@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sethu Madhavan R S — Writer · Director · Storyteller</title>
+  <meta name="description" content="Portfolio of Sethu Madhavan R S — screenwriter, director, production designer, actor. Cinematic stories with quiet intelligence." />
+
+  <!-- Google Fonts: Cinzel (serif headlines), Cormorant (body),
+       Courier Prime (typewriter), Roboto Slab (slab-serif headline name) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Roboto+Slab:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============== TOP NAVIGATION ============== -->
+  <nav class="site-nav" aria-label="Primary">
+    <a href="index.html" class="nav-brand">Sethu Madhavan R S</a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-dropdown">
+        <a href="work.html" class="dropdown-toggle">Work</a>
+        <ul class="dropdown-menu">
+          <li><a href="pages/work-screenplay.html">Screenplay Writer</a></li>
+          <li><a href="pages/work-director.html">Director</a></li>
+          <li><a href="pages/work-production-designer.html">Production Designer</a></li>
+          <li><a href="pages/work-actor.html">Actor</a></li>
+        </ul>
+      </li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============== HERO — name + photo on video background ============== -->
+  <header class="hero">
+    <!-- 1. Looping background video. Muted + playsinline so it autoplays
+            on every browser. To swap, drop a new file at videos/hero-bg.mp4. -->
+    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto"
+           aria-hidden="true">
+      <source src="videos/hero-bg.mp4" type="video/mp4">
+    </video>
+
+    <!-- 1b. Slow-drifting background image — confined to the hero section
+            via overflow:hidden on .hero. Acts as ambient backdrop. -->
+    <div class="hero-bg-image" aria-hidden="true"></div>
+
+    <!-- 2. Soft lavender overlay — keeps name and photo readable -->
+    <div class="hero-bg-overlay"></div>
+
+    <!-- 3. Foreground content -->
+    <div class="hero-text">
+      <h1 id="hero-name">
+        <span class="name-line">Sethu</span>
+        <span class="name-line">Madhavan R S</span>
+      </h1>
+    </div>
+
+    <div class="hero-portrait">
+      <img id="hero-portrait-img" src="images/image.jpg" alt="image">
+    </div>
+  </header>
+
+  <!-- ============== INTRODUCTION ============== -->
+  <section class="reveal">
+    <div class="container" style="text-align:center; max-width:760px;">
+      <h2 class="section-title">A Short Introduction</h2>
+      <p style="font-size:1.1rem;">
+        Based in Chennai, working in Tamil and English. Comfortable in
+        the writers' room, behind the camera, and — when truly cornered
+        — in front of it. I like films that take their time, characters
+        that say less than they mean, and the kind of comedy that doesn't
+        announce itself.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== ACCOLADES ============== -->
+  <section class="accolades reveal" id="accolades">
+    <div class="container">
+      <h2 class="section-title">Accolades & Achievements</h2>
+      <div class="accolades-grid" id="accolades-grid">
+        <!-- filled by inline script below -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== WORK BENTO ============== -->
+  <!-- Each category is a single large card with its own scrolling carousel
+       of work images inside. Hover pauses the scroll. Click anywhere on
+       the card opens that category page. Direction alternates per card. -->
+  <section class="reveal" id="work-highlights">
+    <div class="container">
+      <h2 class="section-title">Work Highlights</h2>
+    </div>
+
+    <div class="work-bento">
+      <a class="bento-card" href="pages/work-screenplay.html">
+        <div class="bento-marquee" data-bento data-category="screenplay"></div>
+        <div class="bento-label">
+          <h3>Screenplay Writer</h3>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="bento-card" href="pages/work-director.html">
+        <div class="bento-marquee" data-bento data-category="director"></div>
+        <div class="bento-label">
+          <h3>Director</h3>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="bento-card" href="pages/work-production-designer.html">
+        <div class="bento-marquee" data-bento data-category="productionDesigner"></div>
+        <div class="bento-label">
+          <h3>Production Designer</h3>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="bento-card" href="pages/work-actor.html">
+        <div class="bento-marquee" data-bento data-category="actor"></div>
+        <div class="bento-label">
+          <h3>Actor</h3>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============== CONTACT PREVIEW ============== -->
+  <section class="contact-preview reveal" id="contact">
+    <div class="container">
+      <h2 class="section-title">Get In Touch</h2>
+      <p class="quote" id="hero-quote">
+        Every great film is just a script that refused to stay on the page.
+      </p>
+      <div class="contact-info">
+        <span id="contact-email">hello@sethumathavan.com</span>
+        <span id="contact-phone">+91 98765 43210</span>
+        <span id="contact-location">Chennai · India</span>
+      </div>
+      <p style="margin-top:2rem; font-style:italic;">
+        Or use the floating button in the corner — it opens a real form.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="site-footer">
+    © <span id="year"></span> Sethu Madhavan R S. All stories reserved.
+  </footer>
+
+  <!-- ============== FLOATING CONTACT BUTTON ============== -->
+  <button class="contact-fab" aria-label="Open contact form" title="Send a message">Get In Touch</button>
+
+  <!-- ============== CONTACT MODAL ============== -->
+  <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+    <div class="modal-card">
+      <button class="close" aria-label="Close">×</button>
+      <h2 id="contact-title">Let's talk</h2>
+      <p>Tell me about your project, your timeline, or just say hello.</p>
+
+      <form class="contact-form" autocomplete="on">
+        <div class="field">
+          <label for="from_name">Name</label>
+          <input type="text" id="from_name" name="from_name" required />
+        </div>
+        <div class="field">
+          <label for="from_email">Email</label>
+          <input type="email" id="from_email" name="from_email" required />
+        </div>
+        <div class="field">
+          <label for="from_phone">Phone</label>
+          <input type="tel" id="from_phone" name="from_phone" />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit" class="btn">Send Message</button>
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============== SCRIPTS ============== -->
+  <!-- EmailJS SDK (browser) -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Site data + behaviors -->
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/contact.js"></script>
+
+  <!-- Inline: small bits that depend on profile/accolades data ----- -->
+  <script>
+    // Fill accolades cards
+    (function () {
+      const grid = document.getElementById('accolades-grid');
+      const items = (window.PORTFOLIO_DATA?.accolades) || [];
+      grid.innerHTML = items.map(a => `
+        <div class="accolade-card">
+          <div class="icon">${a.icon}</div>
+          <h3>${a.title}</h3>
+          <p>${a.subtitle}</p>
+        </div>
+      `).join('');
+    })();
+
+    // Fill profile + footer year
+    (function () {
+      const p = window.PORTFOLIO_DATA?.profile || {};
+      const set = (id, val) => { if (val != null) { const el = document.getElementById(id); if (el) el.textContent = val; } };
+
+      // Hero portrait (name is rendered as two stacked lines directly in HTML;
+      // we don't overwrite it from data.js so the line break stays intact.)
+      // If the user's real photo (e.g. images/portrait.jpg) is missing,
+      // fall back to the placeholder SVG automatically.
+      const portraitEl = document.getElementById('hero-portrait-img');
+      if (portraitEl) {
+        if (p.portrait) portraitEl.src = p.portrait;
+        if (p.portraitFallback) {
+          portraitEl.addEventListener('error', () => {
+            portraitEl.src = p.portraitFallback;
+          }, { once: true });
+        }
+      }
+
+      // Contact preview (CSS already adds curly “ ”)
+      set('hero-quote',       p.quote);
+      set('contact-email',    p.email);
+      set('contact-phone',    p.phone);
+      set('contact-location', p.location);
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+    })();
+  </script>
+</body>
+</html>

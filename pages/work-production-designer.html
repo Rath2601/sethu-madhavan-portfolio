@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Production Designer — Sethu Madhavan R S</title>
+  <meta name="description" content="Production Designer works by Sethu Madhavan R S." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <!-- ============== TOP NAVIGATION (paths use ../ since we're inside /pages) ============== -->
+  <nav class="site-nav" aria-label="Primary">
+    <a href="../index.html" class="nav-brand">Sethu Madhavan R S</a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-menu">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li class="nav-dropdown">
+        <a href="../work.html" class="dropdown-toggle">Work</a>
+        <ul class="dropdown-menu">
+          <li><a href="work-screenplay.html">Screenplay Writer</a></li>
+          <li><a href="work-director.html">Director</a></li>
+          <li><a href="work-production-designer.html">Production Designer</a></li>
+          <li><a href="work-actor.html">Actor</a></li>
+        </ul>
+      </li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============== CATEGORY HEADER ============== -->
+  <header class="category-header reveal">
+    <h1>Production Designer</h1>
+    <p>Built worlds — period homes, future apartments, and one very specific 1950s tea stall.</p>
+  </header>
+
+  <!-- ============== WORK GRID — populated by js/work.js ============== -->
+  <main>
+    <div id="work-grid" class="work-grid" data-category="productionDesigner"></div>
+  </main>
+
+  <footer class="site-footer">
+    © <span id="year"></span> Sethu Madhavan R S. All stories reserved.
+  </footer>
+
+  <!-- Floating contact button + modal -->
+  <button class="contact-fab" aria-label="Open contact form" title="Send a message">Get In Touch</button>
+  <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+    <div class="modal-card">
+      <button class="close" aria-label="Close">×</button>
+      <h2 id="contact-title">Let's talk</h2>
+      <p>Tell me about your project, your timeline, or just say hello.</p>
+      <form class="contact-form" autocomplete="on">
+        <div class="field"><label for="from_name">Name</label><input type="text" id="from_name" name="from_name" required /></div>
+        <div class="field"><label for="from_email">Email</label><input type="email" id="from_email" name="from_email" required /></div>
+        <div class="field"><label for="from_phone">Phone</label><input type="tel" id="from_phone" name="from_phone" /></div>
+        <div class="field"><label for="message">Message</label><textarea id="message" name="message" required></textarea></div>
+        <button type="submit" class="btn">Send Message</button>
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts: paths use ../ because we're inside /pages -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/work.js"></script>
+  <script src="../js/contact.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

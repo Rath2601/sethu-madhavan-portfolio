@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Sethu Madhavan R S</title>
+  <meta name="description" content="A short, typewritten biography of writer-director Sethu Madhavan R S." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============== TOP NAVIGATION ============== -->
+  <nav class="site-nav" aria-label="Primary">
+    <a href="index.html" class="nav-brand">Sethu Madhavan R S</a>
+    <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-dropdown">
+        <a href="work.html" class="dropdown-toggle">Work</a>
+        <ul class="dropdown-menu">
+          <li><a href="pages/work-screenplay.html">Screenplay Writer</a></li>
+          <li><a href="pages/work-director.html">Director</a></li>
+          <li><a href="pages/work-production-designer.html">Production Designer</a></li>
+          <li><a href="pages/work-actor.html">Actor</a></li>
+        </ul>
+      </li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ============== ABOUT — typewriter page ============== -->
+  <main class="about-page">
+    <article class="about-paper reveal">
+      <h1>— ABOUT THE WRITER —</h1>
+
+      <p>
+        TYPED ON: A QUIET WEDNESDAY, CHENNAI.
+        TO WHOM IT MAY CONCERN — preferably someone with a script in
+        development and twenty patient minutes.
+      </p>
+
+      <p>
+        My name is Sethu Madhavan R S. I write screenplays. I sometimes
+        direct them. Occasionally, when the budget is tight or the role
+        is small enough, I act in them. And every now and then a
+        production calls and asks if I'd like to design the world the
+        story lives in — and I almost always say yes, because building
+        rooms is the closest most adults get to playing pretend.
+      </p>
+
+      <p>
+        I started writing the way most people start writing: badly, and
+        with great confidence. The first script was a 124-page noir set
+        in a town I had never visited. The second was a romantic comedy
+        in which nobody fell in love. The third one — the third one was
+        when I figured out that the line between intelligent and pretentious
+        is exactly one bad metaphor wide, and I have spent every script since
+        trying to stay on the correct side of it.
+      </p>
+
+      <p>
+        The work tends to live in three modes:
+      </p>
+
+      <p>
+        ONE. Quietly funny pieces about ordinary people behaving with
+        unreasonable dignity.
+      </p>
+
+      <p>
+        TWO. Drama that takes its time, says less than it knows, and
+        respects the audience enough not to underline anything.
+      </p>
+
+      <p>
+        THREE. Commercial work, unashamed and unembarrassed — because the
+        idea that "mainstream" and "good" are opposites is one of the
+        more recent lies the industry has been selling itself.
+      </p>
+
+      <p>
+        I write in Tamil and English, and I read in both languages plus
+        a few I shouldn't claim. I trained at the Asian College of
+        Journalism before I trained myself out of journalism. I have
+        done short film festivals, writers' rooms, a brief and ill-advised
+        season as a theatre director, and one (1) Audible audio drama as a
+        narrator. The voiceover work paid the bills during a slow year and
+        I am not too proud to mention it.
+      </p>
+
+      <p>
+        Things I care about: silence on the page, characters who are
+        smarter than the plot, weather as a co-author, food as
+        characterization, endings that earn themselves quietly, and the
+        unfashionable belief that a film should be enjoyable.
+      </p>
+
+      <p>
+        Things I have very little patience for: villain monologues,
+        on-the-nose voiceover, "dark for the sake of dark", and
+        anything that would have been better as a podcast.
+      </p>
+
+      <p>
+        If you have a story you'd like me to look at, or an empty page
+        you'd like me to fill, or a small role on a set somewhere with
+        decent lunch — there is a contact button in the corner of every
+        page on this site, and I will get back to you within a week.
+      </p>
+
+      <p>
+        Sometimes sooner. Rarely on Saturdays.
+      </p>
+
+      <p class="signature">
+        Yours, in good faith,<br>
+        Sethu M.
+      </p>
+    </article>
+  </main>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="site-footer">
+    © <span id="year"></span> Sethu Madhavan R S. All stories reserved.
+  </footer>
+
+  <!-- ============== FLOATING CONTACT BUTTON ============== -->
+  <button class="contact-fab" aria-label="Open contact form" title="Send a message">Get In Touch</button>
+
+  <!-- ============== CONTACT MODAL ============== -->
+  <div class="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-title">
+    <div class="modal-card">
+      <button class="close" aria-label="Close">×</button>
+      <h2 id="contact-title">Let's talk</h2>
+      <p>Tell me about your project, your timeline, or just say hello.</p>
+      <form class="contact-form" autocomplete="on">
+        <div class="field"><label for="from_name">Name</label>
+          <input type="text" id="from_name" name="from_name" required /></div>
+        <div class="field"><label for="from_email">Email</label>
+          <input type="email" id="from_email" name="from_email" required /></div>
+        <div class="field"><label for="from_phone">Phone</label>
+          <input type="tel" id="from_phone" name="from_phone" /></div>
+        <div class="field"><label for="message">Message</label>
+          <textarea id="message" name="message" required></textarea></div>
+        <button type="submit" class="btn">Send Message</button>
+        <div class="form-status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============== SCRIPTS ============== -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

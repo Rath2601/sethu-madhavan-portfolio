@@ -1,0 +1,1278 @@
+/* ============================================================
+   MAIN STYLESHEET — Sethu Madhavan R S Portfolio
+   ------------------------------------------------------------
+   Edit any color, font, or size in the :root section below
+   and the change will apply across the whole site.
+   ============================================================ */
+
+/* ---------- 1. Theme variables (edit here to recolor site) ---------- */
+:root {
+  /* Color palette: white + lavender, soft and cinematic */
+  --bg-base:        #fdfcff;       /* page background (off white) */
+  --bg-soft:        #f3eefb;       /* lavender mist */
+  --bg-tint:        #e9defb;       /* deeper lavender */
+  --accent:         #6b4ea8;       /* primary lavender-purple */
+  --accent-strong:  #4b3582;       /* hover/active purple */
+  --text-primary:   #1d1a2e;       /* near-black for body text */
+  --text-muted:     #5e5872;       /* secondary text */
+  --border-soft:    #e3dcef;       /* subtle dividers */
+  --shadow-soft:    0 8px 24px rgba(75, 53, 130, 0.08);
+  --shadow-hover:   0 14px 36px rgba(75, 53, 130, 0.18);
+
+  /* Typography */
+  --font-serif:      'Cinzel', 'Cormorant Garamond', Georgia, serif;
+  --font-body:       'Cormorant Garamond', Georgia, serif;
+  --font-typewriter: 'Courier Prime', 'Courier New', monospace;
+  --font-slab:       'Roboto Slab', 'Bitter', Georgia, serif;
+
+  /* Layout */
+  --max-width: 1200px;
+  --radius:    14px;
+  --transition: 0.3s ease;
+}
+
+/* ---------- 2. Reset and base ---------- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-soft) 100%);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+a:hover { color: var(--accent-strong); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
+h3 { font-size: 1.4rem; }
+
+p { margin-bottom: 1rem; color: var(--text-muted); }
+
+/* ---------- 3. Top navigation ---------- */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem;
+  background: rgba(253, 252, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.nav-brand {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  letter-spacing: 0.18em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+}
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-menu a {
+  font-family: var(--font-serif);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  position: relative;
+  padding: 0.4rem 0;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width var(--transition);
+}
+.nav-menu a:hover::after { width: 100%; }
+
+/* Dropdown for Work */
+.nav-dropdown { position: relative; }
+.nav-dropdown > .dropdown-toggle::before {
+  content: '▾';
+  margin-left: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: var(--bg-base);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 0.6rem 0;
+  min-width: 220px;
+  list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition: all var(--transition);
+}
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.dropdown-menu li a {
+  display: block;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+}
+.dropdown-menu li a:hover { background: var(--bg-soft); }
+
+/* Mobile hamburger */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--accent);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-toggle { display: block; }
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    background: var(--bg-base);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius);
+    margin: 0.6rem 1rem 0 0;
+    padding: 0.6rem 0;
+    min-width: 220px;
+    box-shadow: var(--shadow-soft);
+    display: none;
+  }
+  .nav-menu.is-open { display: flex; }
+  .nav-menu li { width: 100%; }
+  .nav-menu a { padding: 0.7rem 1.2rem; display: block; }
+  .dropdown-menu {
+    position: static;
+    box-shadow: none;
+    border: none;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    display: none;
+    padding-left: 1rem;
+  }
+  .nav-dropdown.is-open .dropdown-menu { display: block; }
+}
+
+/* ---------- 4. Sections and containers ---------- */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+section {
+  padding: 5rem 0;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: var(--accent);
+  margin: 1rem auto 0;
+}
+
+/* ---------- 5. Hero (homepage) — name at bottom, photo on right ---------- */
+.hero {
+  position: relative;
+  min-height: 88vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* Both columns stretch so each item can self-align separately */
+  align-items: stretch;
+  gap: 2rem;
+  padding: 3rem clamp(1.5rem, 5vw, 5rem) 2rem;
+  /* Fallback color while the video loads / if it fails to load */
+  background: var(--bg-soft);
+  overflow: hidden;
+}
+
+/* Background video — sits at the very bottom layer (z:0) */
+.hero-bg-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Background image — slowly drifts (Ken-Burns style) inside the hero.
+   .hero has overflow:hidden, so the image never escapes the home section.
+   Sits between the video and the lavender overlay for a layered look. */
+.hero-bg-image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('../images/image.jpg');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.85;
+  animation: hero-bg-drift 32s ease-in-out infinite alternate;
+  pointer-events: none;
+  will-change: transform;
+}
+
+@keyframes hero-bg-drift {
+  0%   { transform: scale(1.12) translate(-2%, -1%); }
+  50%  { transform: scale(1.18) translate(2%, 1%); }
+  100% { transform: scale(1.12) translate(-2%, -1%); }
+}
+
+/* Reduced-motion users see a still image instead of the drift */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-image { animation: none; }
+}
+
+/* Lavender overlay — kept light so the background image reads clearly,
+   with a slightly darker corner near the lower-left where the name sits
+   so the gradient text remains readable on any frame. */
+.hero-bg-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at top right,   rgba(107, 78, 168, 0.06), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(184, 163, 223, 0.18), transparent 60%),
+    linear-gradient(
+      180deg,
+      rgba(253, 252, 255, 0.05) 0%,
+      rgba(253, 252, 255, 0.08) 45%,
+      rgba(243, 238, 251, 0.30) 100%
+    );
+}
+
+/* Respect users who prefer no motion — hide the video for them */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-video { display: none; }
+}
+
+/* Foreground stays above the overlay */
+.hero-text,
+.hero-portrait { position: relative; z-index: 2; }
+
+/* Left column: name pinned to the BOTTOM so it doesn't sit on top of the
+   showreel. Photo on the right column stays vertically centered. */
+.hero-text {
+  align-self: end;          /* push to bottom of column */
+  padding-bottom: 1rem;
+  max-width: 600px;
+}
+.hero-portrait { align-self: center; }
+
+.hero-text h1 {
+  font-family: var(--font-slab);    /* slab-serif headline */
+  font-weight: 700;
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  /* Solid dark purple — no gradient, no outline, no fill trickery */
+  color: var(--accent-strong);
+  background: none;
+  -webkit-background-clip: border-box;
+          background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  filter: none;
+  text-shadow: none;
+}
+/* Each name-line on its own row — gives the elegant "Sethu / Madhavan R S" stack.
+   Both lines start from the SAME left edge for a clean, aligned look. */
+.hero-text h1 .name-line {
+  display: block;
+  white-space: nowrap;       /* keep "Madhavan R S" on a single line */
+}
+
+/* right side: portrait stage — currently hidden per design request.
+   HTML is left intact so it can be re-enabled by removing this rule. */
+.hero-portrait {
+  display: none;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  min-height: 540px;
+  padding: 1.5rem;
+}
+
+/* Soft glow behind the photo — gives depth without competing for attention.
+   Updated to a circular halo to match the new sticker-shaped portrait. */
+.hero-portrait::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  max-width: 440px;
+  aspect-ratio: 1 / 1;
+  background: radial-gradient(circle at 30% 30%, rgba(184, 163, 223, 0.55), transparent 70%);
+  border-radius: 50%;
+  filter: blur(36px);
+  z-index: 0;
+}
+
+/* Three small accent shapes — modern, elegant */
+.hero-portrait .accent-shape {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 1;
+  pointer-events: none;
+}
+.hero-portrait .accent-shape-1 {
+  width: 86px; height: 86px;
+  background: #f5d28a;
+  bottom: 8%;
+  left: 4%;
+  opacity: 0.78;
+}
+.hero-portrait .accent-shape-2 {
+  width: 44px; height: 44px;
+  background: var(--accent);
+  top: 10%;
+  right: 6%;
+  opacity: 0.22;
+}
+.hero-portrait .accent-shape-3 {
+  width: 16px; height: 16px;
+  background: var(--accent-strong);
+  bottom: 26%;
+  right: 9%;
+  opacity: 0.55;
+}
+
+/* The photo itself — sticker style. Circular cutout with a soft white
+   "printed sticker" outline and a peeling-off-the-page drop shadow.
+   No rectangular box. */
+.hero-portrait img {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--bg-base);
+  border: 8px solid var(--bg-base);
+  box-shadow:
+    0 25px 45px rgba(75, 53, 130, 0.28),
+    0 0 0 1px var(--border-soft);
+  transform: rotate(-1.5deg);
+  transition: transform var(--transition);
+}
+.hero-portrait img:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* responsive: stack on small screens */
+@media (max-width: 880px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  .hero-text { margin: 0 auto; }
+  /* When centered on mobile, name-line spans need to be inline-block so
+     they align as centered blocks rather than full-width left-aligned. */
+  .hero-text h1 .name-line { display: inline-block; }
+  .hero-portrait { min-height: 360px; }
+  .hero-portrait img { max-width: 300px; }
+}
+@media (max-width: 480px) {
+  .hero-portrait { min-height: 300px; padding: 1rem; }
+  .hero-portrait img { max-width: 240px; border-width: 6px; }
+  .hero-portrait .accent-shape-1 { width: 60px; height: 60px; }
+  .hero-portrait .accent-shape-2 { width: 32px; height: 32px; }
+}
+
+/* ---------- 6. Buttons ---------- */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all var(--transition);
+  box-shadow: var(--shadow-soft);
+}
+.btn:hover {
+  background: var(--accent-strong);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  box-shadow: none;
+}
+.btn-outline:hover { background: var(--accent); color: #fff; }
+
+/* ---------- 7. Accolades ---------- */
+.accolades {
+  background: var(--bg-soft);
+}
+.accolades-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+.accolade-card {
+  background: var(--bg-base);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.accolade-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.accolade-card .icon {
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+  color: var(--accent);
+}
+.accolade-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+.accolade-card p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* ---------- 8. Carousel (work highlights) ---------- */
+.carousel-section { padding: 4rem 0; }
+.carousel-section + .carousel-section { padding-top: 2rem; }
+
+.carousel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  max-width: var(--max-width);
+  margin: 0 auto 1.4rem;
+  padding: 0 1.5rem;
+}
+.carousel-header h3 {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.carousel-header a {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.carousel {
+  overflow: hidden;
+  position: relative;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  width: max-content;
+  /* faster than before — was 40s, now 25s */
+  animation: scroll-x 25s linear infinite;
+}
+.carousel:hover .carousel-track { animation-play-state: paused; }
+
+/* alternating direction: every other carousel scrolls the other way */
+.carousel.reverse .carousel-track {
+  animation-direction: reverse;
+}
+
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* Carousel card — image-first, title underneath only */
+.carousel-card {
+  width: 260px;
+  flex: 0 0 auto;
+  background: var(--bg-base);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.carousel-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.carousel-card .poster {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-tint);
+  /* gradient overlay for legibility if image is light */
+  position: relative;
+}
+.carousel-card .poster::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(29,26,46,0.18));
+}
+.carousel-card .info {
+  padding: 0.9rem 1rem;
+  text-align: center;
+}
+.carousel-card .info h4 {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0;
+}
+
+/* ---------- 9. Contact preview (homepage) ---------- */
+.contact-preview {
+  background: var(--bg-soft);
+  text-align: center;
+}
+.contact-preview .quote {
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 2.4vw, 1.6rem);
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+.contact-preview .quote::before { content: '“'; color: var(--accent); }
+.contact-preview .quote::after  { content: '”'; color: var(--accent); }
+
+.contact-info {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  font-family: var(--font-serif);
+  letter-spacing: 0.08em;
+}
+.contact-info span { color: var(--accent-strong); }
+
+/* ---------- 10. Footer ---------- */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-soft);
+  background: var(--bg-base);
+}
+
+/* ---------- 11. About page (typewriter) ---------- */
+.about-page {
+  background: var(--bg-base);
+  padding: 4rem 1.5rem;
+  min-height: 70vh;
+}
+.about-paper {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #fffdf6;
+  border: 1px solid var(--border-soft);
+  padding: 3rem 2.5rem;
+  box-shadow: var(--shadow-soft);
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: #2a2733;
+  white-space: pre-wrap;
+}
+.about-paper h1 {
+  font-family: var(--font-typewriter);
+  font-size: 1.6rem;
+  text-align: center;
+  letter-spacing: 0.04em;
+  border-bottom: 1px dashed var(--text-muted);
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+}
+.about-paper p { color: #2a2733; margin-bottom: 1.2rem; }
+.about-paper .signature {
+  margin-top: 2rem;
+  font-style: italic;
+  text-align: right;
+}
+
+/* ---------- 12. Work category pages ---------- */
+.category-header {
+  text-align: center;
+  padding: 4rem 1.5rem 2rem;
+}
+.category-header h1 {
+  font-family: var(--font-serif);
+  background: linear-gradient(135deg, var(--text-primary), var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.category-header p {
+  max-width: 640px;
+  margin: 1rem auto 0;
+}
+
+/* 3-column responsive grid */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.8rem;
+  max-width: var(--max-width);
+  margin: 2rem auto 4rem;
+  padding: 0 1.5rem;
+}
+
+@media (max-width: 900px) {
+  .work-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .work-grid { grid-template-columns: 1fr; }
+}
+
+/* Image-first card: poster fills the card, hover reveals overlay */
+.work-card {
+  position: relative;
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg-tint);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  transition: transform var(--transition), box-shadow var(--transition);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fade-up 0.6s forwards;
+}
+.work-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+@keyframes fade-up {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* The poster image fills the entire card */
+.work-card .poster {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s ease;
+}
+.work-card:hover .poster { transform: scale(1.06); }
+
+/* Status pill stays visible always (top-right) */
+.work-card .status-pill {
+  position: absolute;
+  z-index: 3;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--accent-strong);
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  box-shadow: var(--shadow-soft);
+}
+
+/* Hover overlay — slides up with title + genre + gist */
+.work-card .overlay {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.6rem;
+  color: #fff;
+  background: linear-gradient(
+    to top,
+    rgba(29, 26, 46, 0.94) 0%,
+    rgba(29, 26, 46, 0.78) 45%,
+    rgba(29, 26, 46, 0.10) 80%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+.work-card:hover .overlay,
+.work-card:focus-within .overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+.work-card .overlay h3 {
+  font-family: var(--font-serif);
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+.work-card .overlay .genre {
+  font-style: italic;
+  color: #d8c8f5;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.work-card .overlay .gist {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #f3eefb;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Touch devices have no hover — show a subtle title strip by default */
+@media (hover: none) {
+  .work-card .overlay {
+    opacity: 1;
+    transform: translateY(0);
+    background: linear-gradient(
+      to top,
+      rgba(29, 26, 46, 0.85) 0%,
+      rgba(29, 26, 46, 0.45) 35%,
+      transparent 60%
+    );
+    /* hide the gist on mobile — keep title + genre tight */
+    padding: 1.2rem;
+  }
+  .work-card .overlay .gist { display: none; }
+}
+
+/* ---------- 13. Work overview (categories landing) ---------- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.8rem;
+  max-width: var(--max-width);
+  margin: 2rem auto 4rem;
+  padding: 0 1.5rem;
+}
+@media (max-width: 720px) {
+  .category-grid { grid-template-columns: 1fr; }
+}
+.category-card {
+  display: block;
+  padding: 3rem 2rem;
+  background: var(--bg-base);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  text-align: center;
+  transition: all var(--transition);
+}
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  background: linear-gradient(135deg, var(--bg-base), var(--bg-soft));
+}
+.category-card h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+.category-card p { color: var(--text-muted); margin-bottom: 0; }
+
+/* ---------- 14. Floating contact button + modal ---------- */
+/* Pill-shaped button with clear "Get In Touch" text — purpose obvious at a glance.
+   Stays compact so it never blocks page content. */
+.contact-fab {
+  position: fixed;
+  bottom: 1.6rem;
+  right: 1.6rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  z-index: 80;
+  box-shadow: 0 12px 28px rgba(75, 53, 130, 0.32);
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+.contact-fab::before {
+  content: '✉';
+  font-size: 1rem;
+}
+.contact-fab:hover {
+  background: var(--accent-strong);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(75, 53, 130, 0.42);
+}
+
+@media (max-width: 480px) {
+  .contact-fab {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+  }
+}
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(29, 26, 46, 0.45);
+  backdrop-filter: blur(4px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1.5rem;
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+.contact-modal.is-open { display: flex; opacity: 1; }
+
+.contact-modal .modal-card {
+  background: var(--bg-base);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-hover);
+  position: relative;
+  animation: pop 0.3s ease-out;
+}
+@keyframes pop {
+  from { transform: scale(0.94); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+.contact-modal h2 {
+  font-family: var(--font-serif);
+  margin-bottom: 0.5rem;
+}
+.contact-modal p { margin-bottom: 1.5rem; }
+.contact-modal .close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+.contact-modal .close:hover { color: var(--accent); }
+
+.contact-form .field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.contact-form label {
+  font-family: var(--font-serif);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  margin-bottom: 0.4rem;
+}
+.contact-form input,
+.contact-form textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  transition: border var(--transition), box-shadow var(--transition);
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(107, 78, 168, 0.18);
+}
+.contact-form textarea { resize: vertical; min-height: 120px; }
+
+.form-status {
+  margin-top: 0.8rem;
+  font-size: 0.9rem;
+  text-align: center;
+  min-height: 1.2rem;
+}
+.form-status.success { color: #2e7d4f; }
+.form-status.error   { color: #b03a3a; }
+
+/* ---------- 15. Reveal-on-scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- 16. Individual work detail page ---------- */
+.detail-page { padding-bottom: 4rem; }
+
+.detail-back {
+  display: inline-block;
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 1.5rem 0 0 1.5rem;
+}
+.detail-back:hover { color: var(--accent-strong); }
+
+.detail-hero {
+  position: relative;
+  height: clamp(280px, 50vh, 520px);
+  margin: 1.5rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-tint);
+}
+.detail-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(29, 26, 46, 0.86) 0%,
+    rgba(29, 26, 46, 0.30) 50%,
+    transparent 100%
+  );
+}
+.detail-hero .titleblock {
+  position: absolute;
+  z-index: 2;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  color: #fff;
+}
+.detail-hero .status-pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.94);
+  color: var(--accent-strong);
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+}
+.detail-hero h1 {
+  font-family: var(--font-serif);
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.04em;
+}
+.detail-hero .genre {
+  font-family: var(--font-serif);
+  font-style: italic;
+  color: #e8dcfb;
+  font-size: 1rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.detail-body {
+  max-width: 880px;
+  margin: 3rem auto 0;
+  padding: 0 1.5rem;
+}
+.detail-body .logline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 2.5rem;
+  line-height: 1.5;
+}
+.detail-body .logline::before { content: '“ '; color: var(--accent); }
+.detail-body .logline::after  { content: ' ”'; color: var(--accent); }
+
+.detail-body .summary {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+.detail-body .notes {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  background: var(--bg-soft);
+  border-left: 3px solid var(--accent);
+  padding: 1.5rem 1.8rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin: 2rem 0;
+}
+
+.detail-gallery {
+  margin-top: 3rem;
+}
+.detail-gallery h2 {
+  font-family: var(--font-serif);
+  text-align: center;
+  font-size: 1.6rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+.detail-gallery .gallery-sub {
+  text-align: center;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.2rem;
+}
+@media (max-width: 600px) {
+  .gallery-grid { grid-template-columns: 1fr; }
+}
+.gallery-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.gallery-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.gallery-item img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+.gallery-item .cap {
+  padding: 0.8rem 1rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.detail-cta {
+  text-align: center;
+  margin-top: 3rem;
+}
+.detail-cta p {
+  font-family: var(--font-serif);
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+/* ---------- 17. Home page WORK BENTO ---------- */
+/* Four large category cards. Each card has its own internal carousel
+   of work images that scrolls horizontally. Direction alternates between
+   cards (1st & 3rd L→R, 2nd & 4th R→L) for visual rhythm.
+   The whole card is a link to that category's full page. */
+.work-bento {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.6rem;
+  max-width: var(--max-width);
+  margin: 0 auto 4rem;
+  padding: 0 1.5rem;
+}
+@media (max-width: 720px) {
+  .work-bento { grid-template-columns: 1fr; }
+}
+
+.bento-card {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+  background: var(--bg-tint);
+  text-decoration: none;
+  color: inherit;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.bento-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Each card has its own marquee — a thin row of images sliding left/right */
+.bento-marquee {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+/* Vignette at the bottom so the title sits cleanly over the images */
+.bento-marquee::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(29,26,46,0.05) 0%,
+    rgba(29,26,46,0.05) 45%,
+    rgba(29,26,46,0.92) 100%
+  );
+  pointer-events: none;
+}
+
+.bento-track {
+  display: flex;
+  gap: 0.6rem;
+  height: 100%;
+  width: max-content;
+  /* default direction: marquee scrolls right-to-left */
+  animation: bento-scroll 28s linear infinite;
+}
+.bento-marquee.reverse .bento-track {
+  animation-direction: reverse;       /* card scrolls left-to-right */
+}
+.bento-card:hover .bento-track {
+  animation-play-state: paused;        /* stop on hover so users can read */
+}
+
+@keyframes bento-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.bento-img {
+  height: 100%;
+  width: 230px;
+  flex: 0 0 auto;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-tint);
+  border-radius: 6px;
+}
+
+/* Card title overlay — sits at the bottom over the gradient vignette */
+.bento-label {
+  position: absolute;
+  z-index: 2;
+  left: 1.4rem;
+  right: 1.4rem;
+  bottom: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+.bento-label h3 {
+  font-family: var(--font-serif);
+  color: #fff;
+  font-size: clamp(1.05rem, 1.6vw, 1.4rem);
+  letter-spacing: 0.12em;
+  margin: 0;
+}
+.bento-label .arrow {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: #fff;
+  transition: transform var(--transition);
+}
+.bento-card:hover .bento-label .arrow {
+  transform: translateX(6px);
+}
+
+@media (max-width: 480px) {
+  .bento-img { width: 170px; }
+  .bento-label h3 { font-size: 1rem; letter-spacing: 0.08em; }
+  .bento-label .arrow { font-size: 1.2rem; }
+}
