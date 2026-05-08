@@ -24,172 +24,184 @@ window.PORTFOLIO_DATA = {
   // --- Writer profile (edit your details here) -------------
   profile: {
     name: "Sethu Madhavan R S",
-    portrait: "images/image.jpg", // your real photo (jpg/png)
-    portraitFallback: "images/image.jpg", // shown if the jpg is missing
-    email: "hello@sethumadhavan.com",
+    portrait: "images/works/photo-portrait.jpeg", // your real photo (jpg/png)
+    portraitFallback: "images/image.jpg",         // shown if the jpg is missing
+    email: "writterrs07@gmail.com",
     phone: "+91 98765 43210",
     location: "Chennai · India",
-    quote: "Every great film is just a script that refused to stay on the page."
+    quote: "Stories first. Everything else, second."
   },
 
   // --- Accolades shown on home page -----------------------
   accolades: [
-    { icon: "🏆", title: "Best Original Screenplay",       subtitle: "Indie Cinema Awards · 2024" },
-    { icon: "🎬", title: "Official Selection",             subtitle: "Mumbai International Film Fest · 2023" },
-    { icon: "✒️", title: "Featured Voice in Storytelling", subtitle: "South Asian Writers Forum · 2023" },
-    { icon: "🌟", title: "Top 10 Emerging Writers",        subtitle: "FilmCraft Magazine · 2022" }
+    {
+      icon: "🎬",
+      title: "Kolkata International Film Festival",
+      subtitle: "JATRA PALA · LIPI — 31st Edition"
+    },
+    {
+      icon: "🏆",
+      title: "SWA Script Lab & Pitch Fest 2025",
+      subtitle: "BLIND SPOT · Stage-I Selection"
+    },
+    {
+      icon: "✒️",
+      title: "17th IDSFFK Kerala",
+      subtitle: "WHAT'S IN A NAME — Official Selection"
+    },
+    {
+      icon: "🌟",
+      title: "Jaipur Intl Film Fest · Folklore IFFF",
+      subtitle: "JATRA PALA — 16th JIFF · 9th IFFF"
+    }
   ],
 
   // --- Works grouped by category --------------------------
   works: {
     screenplay: [
       {
-        slug: "the-last-monsoon",
-        title: "The Last Monsoon",
-        genre: "Drama · Romance",
-        logline: "A meteorologist and a poet meet during the final rain Chennai will ever see.",
-        summary: "Set in a near-future where climate has rewritten the calendar, two strangers find unexpected kinship — and one impossible promise — under the city's last storm.",
+        slug: "im-on-rag",
+        title: "I'm On Rag",
+        genre: "Short Film · Drama",
+        logline: "A 13-year-old girl bunks school with her boyfriend — and gets her first period at the worst possible moment.",
+        summary: "Pallavi (13) bunks school with her boyfriend, but when she unexpectedly gets her first period, she cleverly covers up the truth and makes her parents believe she was in school all along.",
         status: "Completed",
-        notes: "Written across eighteen months in 2023. The first draft was a 130-page sprawl; the shooting draft is a tighter 102. Influences include Kieslowski, early Mira Nair, and a particularly stubborn Chennai monsoon in 2017."
+        poster: "images/works/iamonrag.png",
+        hero:   "images/works/iamonrag.png",
+        notes: "A coming-of-age short about secrets, shame, and the small heroisms of teenage girlhood."
       },
       {
-        slug: "office-hours",
-        title: "Office Hours",
-        genre: "Comedy",
-        logline: "An IT support engineer accidentally becomes the company's unofficial therapist.",
-        summary: "A workplace comedy about over-sharing colleagues, broken printers, and the strange wisdom you can find in a 4 PM coffee break.",
+        slug: "shadow-of-pride",
+        title: "Shadow of Pride",
+        genre: "Short Film · Drama",
+        logline: "At night, a mother and father are obligated to kill their daughter in the name of caste honour.",
+        summary: "A devastating short on caste violence — about the parents who carry out a so-called honour killing, and the impossible space they're forced to occupy between love and lineage.",
         status: "Completed",
-        notes: "A love letter to the small humanity of large open-plan offices. Currently in the development pipeline at a major streaming platform."
+        poster: "images/works/shadow-of-pride.png",
+        hero:   "images/works/shadow-of-pride.png"
       },
       {
-        slug: "project-karuvel",
-        title: "Project Karuvel",
-        genre: "Thriller · Mystery",
-        logline: "A retired detective is pulled back when his own old case files start solving themselves.",
-        summary: "A taut, atmospheric thriller exploring memory, guilt, and the small towns that quietly keep their secrets.",
-        status: "In Development"
+        slug: "shit-show",
+        title: "Shit Show",
+        genre: "Short Film · Meta-Comedy",
+        logline: "The actor didn't show up on day two. So the script was rewritten in fifteen minutes.",
+        summary: "(REAL INCIDENT) The actor didn't come to the second day shoot. The whole short film was written in 15 minutes. It's a META MOVIE — it starts with CUT and ends with ACTION.",
+        status: "Completed",
+        poster: "images/works/shit-show.jpeg",
+        hero:   "images/works/shit-show.jpeg",
+        notes: "Born from a production disaster. A film about making a film about not being able to make a film."
       },
       {
-        slug: "dosa-for-two",
-        title: "Dosa for Two",
-        genre: "Romantic Comedy",
-        logline: "A food critic with no taste falls for the chef whose food he cannot describe.",
-        summary: "A warm, breezy rom-com about pretending you know what you're doing — at love, at work, at brunch.",
-        status: "Optioned"
+        slug: "blind-spot",
+        title: "Blind Spot",
+        genre: "Web Series · Drama",
+        logline: "A first-year IIT student accidentally blinds a police constable — and the lives of both unravel from there.",
+        summary: "An innocent first-year IIT engineering student accidentally blinds a police constable aspiring to be an IPS officer. Through this life-altering incident, he discovers the complexities of the world and learns profound lessons from his diverse classmates about choices and consequences.",
+        status: "SWA Script Lab 2025 · Stage-I",
+        poster: "images/works/blind-spot.png",
+        hero:   "images/works/blind-spot.png"
       },
       {
-        slug: "the-quiet-river",
-        title: "The Quiet River",
-        genre: "Drama",
-        logline: "Three sisters return home to scatter their father's ashes and end up scattering everything else.",
-        summary: "An intimate family drama spanning four days, two old wounds, and one very stubborn grandmother.",
-        status: "Completed"
+        slug: "town-ship",
+        title: "Town Ship",
+        genre: "Mini Web Series · Thriller",
+        logline: "A dream job in a remote township turns into a fight for justice when Pallavi uncovers the truth behind her company.",
+        summary: "A dream job in a remote township turns into a fight for justice when Pallavi uncovers the brutal truth behind her company.",
+        status: "In Development",
+        poster: "images/works/township.png",
+        hero:   "images/works/township.png"
       },
       {
-        slug: "signal-lost",
-        title: "Signal Lost",
-        genre: "Sci-Fi",
-        logline: "A radio operator on a remote island starts receiving messages from the day before tomorrow.",
-        summary: "A lo-fi sci-fi feature about loneliness, second chances, and the noise we mistake for meaning.",
-        status: "In Development"
+        slug: "battalion",
+        title: "Battalion (Padai)",
+        genre: "Animation Short Film",
+        logline: "After his father is killed for entering forbidden streets, a child returns — this time with newfound strength.",
+        summary: "When his father is brutally killed for entering the streets, a child returns to those same streets, this time with newfound strength.",
+        status: "Completed",
+        poster: "images/works/battalion.jpg",
+        hero:   "images/works/battalion.jpg",
+        notes: "Made as part of the 72-hour PK Rosy Filmmaking Challenge 2025, organised by SRFTI."
       }
     ],
 
     director: [
       {
-        slug: "tea-by-the-window",
-        title: "Tea by the Window",
+        slug: "im-on-rag-director",
+        title: "I'm On Rag",
         genre: "Short Film · Drama",
-        logline: "Four strangers, one small café, one very bad afternoon.",
-        summary: "Directed in a single continuous take, this short captures the quiet collapse and small mercy that strangers can offer each other.",
+        logline: "A 13-year-old girl bunks school with her boyfriend — and gets her first period at the worst possible moment.",
+        summary: "Directed and written by Sethu. A coming-of-age short on secrets, shame, and how children carry their first adult moments alone.",
         status: "Completed",
-        notes: "Shot in three days at an actual café in Mylapore. The single-take structure meant 22 rehearsals before the first roll."
+        poster: "images/works/iamonrag.png",
+        hero:   "images/works/iamonrag.png"
       },
       {
-        slug: "carbon-copy",
-        title: "Carbon Copy",
-        genre: "Short Film · Comedy",
-        logline: "A photocopy machine begins printing the future. Nobody believes the intern.",
-        summary: "A six-minute office comedy with sharp pacing and one excellent close-up of an HP LaserJet.",
-        status: "Completed"
+        slug: "velicham",
+        title: "Velicham",
+        genre: "Short Film",
+        logline: "A short film by Sethu Madhavan R S — directed and production designed.",
+        summary: "Velicham (வெளிச்சம் — \"light\") is a short film directed and production designed by Sethu. A quiet, image-led piece on the spaces between people.",
+        status: "Completed",
+        poster: "images/works/velicham.jpeg",
+        hero:   "images/works/velicham.jpeg"
       },
       {
-        slug: "postcards-home",
-        title: "Postcards Home",
-        genre: "Documentary · Short",
-        logline: "Three migrant workers describe the city they've never been allowed to call home.",
-        summary: "A tender documentary short, observational and unhurried, made during evenings off in 2023.",
-        status: "Completed"
+        slug: "jatra-pala",
+        title: "Jatra Pala",
+        genre: "Documentary",
+        logline: "Bengal's beloved folk theatre, fighting for its place in the modern age.",
+        summary: "Jatra Pala explores Bengal's beloved folk theatre as it transforms in the modern age. Veterans recall lantern-lit nights of cultural glory, lamenting its decline, while a new wave of fresh talents fights digital dominance. A heartfelt documentary capturing a resilient art form's struggle, spirit, and enduring place in Bengal's soul.",
+        status: "Kolkata IFF · Jaipur IFF · IFFF",
+        poster: "images/works/jatra-pala.jpeg",
+        hero:   "images/works/jatra-pala.jpeg",
+        notes: "Screened at the 31st Kolkata International Film Festival, 16th Jaipur International Film Festival, and the 9th International Folklore Film Festival (IFFF)."
       },
       {
-        slug: "untitled-feature-1",
-        title: "Untitled Feature #1",
-        genre: "Drama",
-        logline: "A widowed Bharatanatyam teacher takes on her most reluctant student: her own son.",
-        summary: "First feature in development. Currently in pre-production with location scouts in Madurai.",
-        status: "In Development"
+        slug: "lipi",
+        title: "Lipi (Mise-en-Scène)",
+        genre: "Feature · Chief AD",
+        logline: "Worked as Chief Assistant Director on Lipi — a film that's travelled to several international festivals.",
+        summary: "Served as Chief Assistant Director (Mise-en-Scène) on Lipi. The film has screened at the 31st Kolkata International Film Festival and many other international festivals.",
+        status: "Released · Festival Run",
+        poster: "images/works/lipi.jpeg",
+        hero:   "images/works/lipi.jpeg"
       }
     ],
 
     productionDesigner: [
       {
-        slug: "house-of-almonds",
-        title: "House of Almonds",
-        genre: "Period Drama",
-        logline: "A 1940s family home becomes the silent witness to four generations.",
-        summary: "Production designed an 11-room set built across two soundstages. Won 'Best Art Direction' at SAIFF 2023.",
-        status: "Released"
-      },
-      {
-        slug: "late-bloom",
-        title: "Late Bloom",
-        genre: "Indie Drama",
-        logline: "A single block in old Madras, recreated in painstaking detail.",
-        summary: "Designed a fully practical street set including working storefronts, hand-painted signage, and period-accurate vehicles.",
-        status: "Released"
-      },
-      {
-        slug: "glasshouse",
-        title: "Glasshouse",
-        genre: "Sci-Fi",
-        logline: "A near-future apartment that quietly rearranges itself when its occupants aren't looking.",
-        summary: "Lead designer for a single-location sci-fi exploring intimacy, surveillance, and very tasteful furniture.",
-        status: "Post-Production"
+        slug: "velicham-pd",
+        title: "Velicham",
+        genre: "Short Film",
+        logline: "Production designed and directed — building the world the script lives in.",
+        summary: "Production design for Velicham — a quiet image-led short. Designed and dressed every frame to keep the story leaning on space and silence rather than dialogue.",
+        status: "Completed",
+        poster: "images/works/velicham.jpeg",
+        hero:   "images/works/velicham.jpeg"
       }
     ],
 
     actor: [
       {
-        slug: "tea-by-the-window-actor",
-        title: "Tea by the Window",
-        genre: "Short Film",
-        logline: "Played 'The Stranger', a man who arrives twenty minutes too late.",
-        summary: "Lead role in a self-directed short — a quiet, weight-of-a-thousand-words performance.",
-        status: "Completed"
+        slug: "whats-in-a-name",
+        title: "What's In A Name",
+        genre: "Short Film · Lead Role",
+        logline: "Played the protagonist in a short that travelled to the 17th IDSFFK Kerala.",
+        summary: "Lead role in 'What's In A Name'. The film was officially selected at the 17th International Documentary and Short Film Festival of Kerala (IDSFFK).",
+        status: "IDSFFK Selection",
+        poster: "images/works/whats-in-a-name.jpg",
+        hero:   "images/works/whats-in-a-name.jpg",
+        notes: "Carried the film as the protagonist — a quiet performance built around small gestures and longer silences."
       },
       {
-        slug: "half-light",
-        title: "Half-Light",
-        genre: "Web Series",
-        logline: "Recurring role as 'Vishnu', the cynical newsroom editor with a soft spot for terrible interns.",
-        summary: "Appeared in eight episodes of an acclaimed long-form drama. Streaming on a major OTT platform.",
-        status: "Released"
-      },
-      {
-        slug: "the-wrong-wedding",
-        title: "The Wrong Wedding",
-        genre: "Feature · Comedy",
-        logline: "Played 'Cousin Mani', who shows up to the wrong wedding and stays for the food.",
-        summary: "Supporting role in a 2024 ensemble comedy. Critics noted the performance was 'small, sharp, and very funny'.",
-        status: "Released"
-      },
-      {
-        slug: "voiceover-audible-originals",
-        title: "Voiceover · Audible Originals",
-        genre: "Audio Drama",
-        logline: "Lead narrator for a six-part Tamil-English audio thriller.",
-        summary: "Recorded over 14 hours of dramatic narration. Available on Audible.",
-        status: "Released"
+        slug: "seed",
+        title: "Seed",
+        genre: "Short Film · Acting",
+        logline: "An acting credit in 'Seed' — a small role with a long sit in memory.",
+        summary: "Featured as an actor in 'Seed'. Watch a clip on Instagram: https://www.instagram.com/p/DIg0Qp8S61o/",
+        status: "Released",
+        poster: "images/works/whats-in-a-name.jpg",
+        hero:   "images/works/whats-in-a-name.jpg"
       }
     ]
   }
@@ -211,14 +223,39 @@ window.PORTFOLIO_DATA = {
        ...
      ]
    ============================================================ */
+/* Resolve a relative image path so it works whether the current page
+   lives at the project root (e.g. index.html) or inside /pages/ (e.g.
+   work-detail.html). For absolute / external URLs we leave them alone.
+   This keeps data.js clean — paths there just say "images/works/foo.png". */
+function resolveAssetPath(p) {
+  if (!p) return p;
+  // Absolute URLs (http://, https://, //, data:) and explicit ../ paths pass through.
+  if (/^([a-z]+:)?\/\//i.test(p) || p.startsWith('data:') || p.startsWith('../') || p.startsWith('/')) {
+    return p;
+  }
+  // If we're inside /pages/, the page is one folder deep — prepend ../
+  try {
+    if (typeof window !== 'undefined' && window.location.pathname.includes('/pages/')) {
+      return '../' + p;
+    }
+  } catch (_) { /* no-op */ }
+  return p;
+}
+
 window.PORTFOLIO_IMG = {
   poster: (work) =>
-    work.poster || `https://picsum.photos/seed/${work.slug}/600/800`,
+    resolveAssetPath(work.poster) || `https://picsum.photos/seed/${work.slug}/600/800`,
   hero: (work) =>
-    work.hero   || `https://picsum.photos/seed/${work.slug}-hero/1600/900`,
+    resolveAssetPath(work.hero)   || `https://picsum.photos/seed/${work.slug}-hero/1600/900`,
   gallery: (work) =>
-    work.gallery || [1, 2, 3, 4].map(i => ({
-      src: `https://picsum.photos/seed/${work.slug}-bts-${i}/900/700`,
-      caption: ["Behind the scenes", "On location", "First read-through", "Final shot"][i - 1]
-    }))
+    (work.gallery
+      ? work.gallery.map(g => ({ ...g, src: resolveAssetPath(g.src) }))
+      : [1, 2, 3, 4].map(i => ({
+          src: `https://picsum.photos/seed/${work.slug}-bts-${i}/900/700`,
+          caption: ["Behind the scenes", "On location", "First read-through", "Final shot"][i - 1]
+        })))
 };
+
+/* Expose the resolver so other scripts (e.g. main.js handling the hero
+   portrait) can use the same logic. */
+window.PORTFOLIO_RESOLVE = resolveAssetPath;

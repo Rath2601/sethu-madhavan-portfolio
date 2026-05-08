@@ -80,6 +80,21 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   background: rgba(253, 252, 255, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-soft);
+  /* Smoothly slide the nav out of the way when the user scrolls down,
+     and slide it back when they scroll up. The translate is applied via
+     a class added by main.js — no layout reflow, GPU-friendly. */
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+}
+/* Hidden state is added by JS once the user scrolls past a threshold
+   AND is scrolling downward. Removing the class slides the nav back in. */
+.site-nav.is-hidden {
+  transform: translateY(-105%);
+}
+/* When the page is scrolled at all (any non-zero offset), give the nav a
+   slightly stronger shadow so it feels properly elevated over content. */
+.site-nav.is-scrolled {
+  box-shadow: 0 6px 20px rgba(75, 53, 130, 0.08);
 }
 
 .nav-brand {
@@ -97,6 +112,8 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   align-items: center;
 }
 
+/* Bigger, snappier click targets. Using padding (instead of just font size)
+   keeps the visible link the same but makes hover/click forgiving. */
 .nav-menu a {
   font-family: var(--font-serif);
   font-size: 0.95rem;
@@ -104,21 +121,38 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   text-transform: uppercase;
   color: var(--text-primary);
   position: relative;
-  padding: 0.4rem 0;
+  padding: 0.7rem 0.4rem;
+  display: inline-block;
 }
 
 .nav-menu a::after {
   content: '';
   position: absolute;
-  left: 0; bottom: 0;
-  width: 0; height: 2px;
+  left: 0.4rem; right: 0.4rem; bottom: 0.4rem;
+  width: auto; height: 2px;
   background: var(--accent);
-  transition: width var(--transition);
+  transform: scaleX(0);
+  transform-origin: left center;
+  /* Faster than the global var so the underline feels responsive even on
+     touch devices that delay :hover. */
+  transition: transform 0.2s ease;
 }
-.nav-menu a:hover::after { width: 100%; }
+.nav-menu a:hover::after,
+.nav-menu a:focus-visible::after { transform: scaleX(1); }
 
 /* Dropdown for Work */
 .nav-dropdown { position: relative; }
+/* The dropdown trigger gets a tiny invisible "bridge" beneath itself so the
+   cursor never loses contact with the menu when moving from link → submenu.
+   Without this the dropdown closes the moment the cursor crosses the gap. */
+.nav-dropdown::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 100%;
+  height: 12px;
+  pointer-events: auto;
+}
 .nav-dropdown > .dropdown-toggle::before {
   content: '▾';
   margin-left: 0.4rem;
@@ -127,7 +161,7 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
 }
 .dropdown-menu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 8px);     /* sits just below the bridge */
   right: 0;
   background: var(--bg-base);
   border: 1px solid var(--border-soft);
@@ -138,14 +172,18 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   list-style: none;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
-  transition: all var(--transition);
+  transform: translateY(6px);
+  /* Scoped transition list (no `all`) — feels lighter and avoids
+     accidentally animating layout properties on heavy menus. */
+  transition: opacity 0.15s ease, transform 0.15s ease, visibility 0s linear 0.15s;
 }
 .nav-dropdown:hover .dropdown-menu,
-.nav-dropdown:focus-within .dropdown-menu {
+.nav-dropdown:focus-within .dropdown-menu,
+.nav-dropdown.is-open .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0s;
 }
 .dropdown-menu li a {
   display: block;
@@ -334,6 +372,44 @@ section {
 .hero-text h1 .name-line {
   display: block;
   white-space: nowrap;       /* keep "Madhavan R S" on a single line */
+}
+
+/* ---- Hero quote (replaces the giant stacked name) ----
+   The brand name still appears in the top nav, so the hero now leads with
+   a quote instead. Two stacked lines + a small italic credit underneath. */
+.hero-quote-main {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-style: normal;
+  max-width: 640px;
+}
+.hero-quote-main .hero-quote-line {
+  font-family: var(--font-slab);
+  font-weight: 700;
+  font-size: clamp(2rem, 5.4vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: 0.01em;
+  color: var(--accent-strong);
+  margin: 0;
+}
+.hero-quote-main .hero-quote-line--accent {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  margin-top: 0.25rem;
+}
+.hero-quote-main .hero-quote-cite {
+  display: block;
+  margin-top: 1.1rem;
+  font-family: var(--font-serif);
+  font-style: normal;
+  font-size: clamp(0.78rem, 1.4vw, 0.95rem);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
 }
 
 /* right side: portrait stage — currently hidden per design request.
@@ -1275,4 +1351,78 @@ section {
   .bento-img { width: 170px; }
   .bento-label h3 { font-size: 1rem; letter-spacing: 0.08em; }
   .bento-label .arrow { font-size: 1.2rem; }
+}
+
+/* ============================================================
+   18. LAYERED SCROLL TRANSFORMS (added)
+   ------------------------------------------------------------
+   The home page uses a small layered-parallax effect:
+     • The hero background image drifts vertically with scroll,
+       driven by the CSS variable --hero-parallax (set in JS).
+     • Each .reveal section now also receives a tiny progressive
+       transform based on intersection ratio — a soft layered
+       feel without scroll-jacking the page.
+   All effects degrade gracefully and are skipped under
+   prefers-reduced-motion.
+   ============================================================ */
+
+/* The drifting hero background already animates internally (Ken Burns) —
+   we leave that animation alone so we don't fight its keyframe transform.
+   Instead, the foreground elements get a subtle scroll-linked drift so
+   the hero feels layered: foreground moves, background continues to drift
+   independently. The variable --hero-parallax is updated by main.js. */
+.hero.has-parallax .hero-text {
+  transform: translate3d(0, calc(var(--hero-parallax, 0) * 1px), 0);
+  will-change: transform;
+}
+.hero.has-parallax .hero-portrait {
+  /* Portrait drifts opposite direction & at a smaller magnitude so the
+     two foreground elements visually separate as the user scrolls. */
+  transform: translate3d(0, calc(var(--hero-parallax, 0) * -0.4px), 0);
+  will-change: transform;
+}
+
+/* Reveal sections: enhanced from the existing fade-up to a layered
+   transform that includes a subtle tilt and child stagger.
+   Falls back to the original behavior on browsers without JS-driven
+   --reveal-progress. */
+.reveal {
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+/* Children inside a reveal can opt into the stagger by adding the
+   .reveal-child class. Each gets a small individual delay via
+   --stagger-index set inline (0, 1, 2, …). */
+.reveal .reveal-child {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: calc(var(--stagger-index, 0) * 80ms);
+}
+.reveal.is-visible .reveal-child {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Sections that opt-in to a stronger scroll-linked transform. The variable
+   --scroll-progress (0..1) is updated by JS while the section is in view.
+   We only translate by a few pixels — subtle, never scroll-jacks. */
+.scroll-layer {
+  transform: translate3d(0, calc((1 - var(--scroll-progress, 1)) * -16px), 0);
+  transition: transform 0.1s linear;
+  will-change: transform;
+}
+
+/* Respect reduced motion: drop all the scroll-driven transforms. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-bg-image,
+  .scroll-layer,
+  .reveal,
+  .reveal .reveal-child {
+    transform: none !important;
+    transition: opacity 0.4s ease;
+  }
 }
