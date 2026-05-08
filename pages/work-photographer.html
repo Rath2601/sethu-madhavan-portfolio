@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Work — Sedhu Mathavan R S</title>
-  <meta name="description" content="Project detail page on Sedhu Mathavan R S's portfolio." />
+  <title>Photographer — Sedhu Mathavan R S</title>
+  <meta name="description" content="Photography by Sedhu Mathavan R S — portraits, production stills, and personal photography." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,7 +14,7 @@
 </head>
 <body>
 
-  <!-- ============== TOP NAVIGATION ============== -->
+  <!-- ============== TOP NAVIGATION (paths use ../ since we're inside /pages) ============== -->
   <nav class="site-nav" aria-label="Primary">
     <a href="../index.html" class="nav-brand">Sedhu Mathavan R S</a>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
@@ -35,11 +35,15 @@
     </ul>
   </nav>
 
-  <!-- ============== DETAIL CONTENT (filled by work-detail.js) ============== -->
-  <main class="detail-page">
-    <div id="detail-root">
-      <p style="text-align:center; padding:4rem 1rem;">Loading project…</p>
-    </div>
+  <!-- ============== CATEGORY HEADER ============== -->
+  <header class="category-header reveal">
+    <h1>Photographer</h1>
+    <p>Portraits, found light, and the small moments between scenes — an ongoing collection of stills from sets and from life.</p>
+  </header>
+
+  <!-- ============== WORK GRID — populated by js/work.js ============== -->
+  <main>
+    <div id="work-grid" class="work-grid" data-category="photographer"></div>
   </main>
 
   <footer class="site-footer">
@@ -68,7 +72,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/work-detail.js"></script>
+  <script src="../js/work.js"></script>
   <script src="../js/contact.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

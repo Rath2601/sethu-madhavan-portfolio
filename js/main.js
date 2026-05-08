@@ -5,8 +5,8 @@
    • Dropdown toggle on mobile
    • Smooth-scroll for in-page anchors
    • Reveal-on-scroll animations
-   • Header hide-on-scroll-down (NEW)
-   • Layered parallax on the hero (NEW, home page only)
+   • Header hide-on-scroll-down
+   • Layered parallax (hero + scroll-driven layers across the page)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,6 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupHeaderScrollBehavior();
   setupHeroParallax();
   setupScrollLayers();
+  setupGlobalParallax();
 });
 
 /* ---- 1. Mobile navigation toggle ---- */
@@ -197,6 +198,71 @@ function setupScrollLayers() {
   }
 
   window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  update();
+}
+
+/* ---- 7. Global parallax ----
+   Any element with a [data-parallax-speed="0.x"] attribute drifts at a
+   slower (or faster) rate than the page as the user scrolls. This is a
+   *real* parallax — the element's perceived speed differs from the
+   surrounding page, giving the home page extra layered depth.
+
+   Speed values are small on purpose:
+     • 0.04 – 0.08  =  subtle background drift (recommended)
+     • 0.10 – 0.18  =  noticeable but not jarring
+     • > 0.20       =  starts to feel like scroll-jacking — avoid
+
+   The transform is applied as translate3d(Y) only — never X — so wide
+   layouts and mobile breakpoints are never affected horizontally.
+   We bail entirely on prefers-reduced-motion. */
+function setupGlobalParallax() {
+  const elements = document.querySelectorAll('[data-parallax-speed]');
+  if (!elements.length) return;
+
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce && reduce.matches) return;
+
+  // Seed each element with a hint so the browser keeps a composited layer.
+  elements.forEach(el => { el.style.willChange = 'transform'; });
+
+  let ticking = false;
+
+  function update() {
+    const vh = window.innerHeight || 1;
+    elements.forEach(el => {
+      const speed = parseFloat(el.dataset.parallaxSpeed) || 0;
+      // Skip work if the element is far outside the viewport — small perf win
+      // for long pages.
+      const rect = el.getBoundingClientRect();
+      if (rect.bottom < -vh || rect.top > vh * 2) return;
+
+      // Distance from the element's centre to the viewport's centre.
+      // When this is 0 the element is dead-centre — no transform.
+      const distance = rect.top + rect.height / 2 - vh / 2;
+      // Multiply by speed; flip sign so positive speed means "drifts slower
+      // than the page" (the visually intuitive direction).
+      const offset = -distance * speed;
+      el.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+    });
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // Recalculate after window resizes — keeps things sane after orientation
+  // changes on phones / tablets.
+  window.addEventListener('resize', () => {
     if (!ticking) {
       window.requestAnimationFrame(update);
       ticking = true;

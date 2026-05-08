@@ -23,7 +23,7 @@
 window.PORTFOLIO_DATA = {
   // --- Writer profile (edit your details here) -------------
   profile: {
-    name: "Sethu Madhavan R S",
+    name: "Sedhu Mathavan R S",
     portrait: "images/works/photo-portrait.jpeg", // your real photo (jpg/png)
     portraitFallback: "images/image.jpg",         // shown if the jpg is missing
     email: "writterrs07@gmail.com",
@@ -130,7 +130,7 @@ window.PORTFOLIO_DATA = {
         title: "I'm On Rag",
         genre: "Short Film · Drama",
         logline: "A 13-year-old girl bunks school with her boyfriend — and gets her first period at the worst possible moment.",
-        summary: "Directed and written by Sethu. A coming-of-age short on secrets, shame, and how children carry their first adult moments alone.",
+        summary: "Directed and written by Sedhu. A coming-of-age short on secrets, shame, and how children carry their first adult moments alone.",
         status: "Completed",
         poster: "images/works/iamonrag.png",
         hero:   "images/works/iamonrag.png"
@@ -139,8 +139,8 @@ window.PORTFOLIO_DATA = {
         slug: "velicham",
         title: "Velicham",
         genre: "Short Film",
-        logline: "A short film by Sethu Madhavan R S — directed and production designed.",
-        summary: "Velicham (வெளிச்சம் — \"light\") is a short film directed and production designed by Sethu. A quiet, image-led piece on the spaces between people.",
+        logline: "A short film by Sedhu Mathavan R S — directed and production designed.",
+        summary: "Velicham (வெளிச்சம் — \"light\") is a short film directed and production designed by Sedhu. A quiet, image-led piece on the spaces between people.",
         status: "Completed",
         poster: "images/works/velicham.jpeg",
         hero:   "images/works/velicham.jpeg"
@@ -202,6 +202,19 @@ window.PORTFOLIO_DATA = {
         status: "Released",
         poster: "images/works/whats-in-a-name.jpg",
         hero:   "images/works/whats-in-a-name.jpg"
+      }
+    ],
+
+    photographer: [
+      {
+        slug: "frames",
+        title: "Frames",
+        genre: "Photography",
+        logline: "An ongoing series — quiet portraits, found light, and the small moments between scenes.",
+        summary: "An ongoing collection of stills — production stills, on-set portraits, and personal photography taken between (and sometimes during) film projects.",
+        status: "Ongoing",
+        poster: "images/works/photo-portrait.jpeg",
+        hero:   "images/works/photo-portrait.jpeg"
       }
     ]
   }

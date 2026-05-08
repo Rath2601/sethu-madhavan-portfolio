@@ -1,5 +1,5 @@
 /* ============================================================
-   MAIN STYLESHEET — Sethu Madhavan R S Portfolio
+   MAIN STYLESHEET — Sedhu Mathavan R S Portfolio
    ------------------------------------------------------------
    Edit any color, font, or size in the :root section below
    and the change will apply across the whole site.
@@ -1254,6 +1254,9 @@ section {
 .bento-card {
   position: relative;
   display: block;
+  /* Card *height* matches the original wide-banner proportions (less tall);
+     only the GRID layout (2-2-1 with the last card centred) is the new
+     part — see .bento-card--center below. */
   aspect-ratio: 16 / 10;
   overflow: hidden;
   border-radius: var(--radius);
@@ -1266,6 +1269,28 @@ section {
 .bento-card:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
+}
+
+/* Centered variant — used by the Actor card so the 5-card grid lays out
+   2 / 2 / 1 with the lone last card centred at the natural card width
+   (matches the user's sketch). It still spans both columns of the grid
+   so the row exists, but its inner width is constrained to one column
+   and it's pushed to the row centre with margin auto.
+   On mobile the bento grid already collapses to 1 column, so this rule
+   has no negative effect — the card just stacks like the rest. */
+.bento-card--center {
+  grid-column: 1 / -1;
+  /* width = (50% of work-bento) − (half of the gap) so the card matches
+     a regular 1-of-2-columns card exactly. The gap is 1.6rem, half is
+     0.8rem. Margin auto centres it horizontally. */
+  width: calc(50% - 0.8rem);
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 720px) {
+  /* In 1-column mode let the centered card use the full width like the others. */
+  .bento-card--center { width: 100%; }
 }
 
 /* Each card has its own marquee — a thin row of images sliding left/right */

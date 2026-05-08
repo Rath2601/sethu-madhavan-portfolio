@@ -7,8 +7,11 @@
      • Logline as a centered quote
      • Summary
      • Optional "production notes" pull-quote
-     • Behind-the-scenes gallery
      • CTA back to the category + a contact prompt
+
+   The "Behind the Scenes" gallery section was removed per design.
+   The image-helper API still exposes a gallery() function for
+   pages that want to render their own gallery in future.
 
    URL format:  pages/work-detail.html?cat=screenplay&slug=the-last-monsoon
    ============================================================ */
@@ -34,16 +37,16 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
       </section>
     `;
-    document.title = "Not found — Sethu Madhavan R S";
+    document.title = "Not found — Sedhu Mathavan R S";
     return;
   }
 
   // Update the document title for nicer browser tabs and SEO.
-  document.title = `${work.title} — Sethu Madhavan R S`;
+  document.title = `${work.title} — Sedhu Mathavan R S`;
 
   // Build all the visual sections.
+  // Note: the Behind-the-Scenes gallery has been removed per design.
   const heroImg = window.PORTFOLIO_IMG.hero(work);
-  const gallery = window.PORTFOLIO_IMG.gallery(work);
   const categoryPage = `work-${slugifyCat(cat)}.html`;
   const categoryLabel = humanLabel(cat);
 
@@ -62,19 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="logline">${escapeHTML(work.logline)}</p>
       <p class="summary">${escapeHTML(work.summary)}</p>
       ${work.notes ? `<aside class="notes">${escapeHTML(work.notes)}</aside>` : ''}
-
-      <div class="detail-gallery">
-        <h2>Behind the Scenes</h2>
-        <p class="gallery-sub">A few images from the making of this project.</p>
-        <div class="gallery-grid">
-          ${gallery.map(img => `
-            <figure class="gallery-item">
-              <img src="${img.src}" alt="${escapeHTML(img.caption || '')}" loading="lazy">
-              ${img.caption ? `<figcaption class="cap">${escapeHTML(img.caption)}</figcaption>` : ''}
-            </figure>
-          `).join('')}
-        </div>
-      </div>
 
       <div class="detail-cta">
         <p>Interested in this project, or something like it?</p>
@@ -111,8 +101,9 @@ function humanLabel(cat) {
   return ({
     screenplay:         'Screenplay Writer',
     director:           'Director',
-    productionDesigner: 'Production Designer',
-    actor:              'Actor'
+    productionDesigner: 'Asst. Production Designer',
+    actor:              'Actor',
+    photographer:       'Photographer'
   })[cat] || 'Work';
 }
 

@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sethu Madhavan R S — Writer · Director · Storyteller</title>
-  <meta name="description" content="Portfolio of Sethu Madhavan R S — screenwriter, director, production designer, actor. Cinematic stories with quiet intelligence." />
+  <title>Sedhu Mathavan R S — Writer · Director · Storyteller</title>
+  <meta name="description" content="Portfolio of Sedhu Mathavan R S — screenwriter, director, production designer, actor. Cinematic stories with quiet intelligence." />
 
   <!-- Google Fonts: Cinzel (serif headlines), Cormorant (body),
        Courier Prime (typewriter), Roboto Slab (slab-serif headline name) -->
@@ -18,7 +18,7 @@
 
   <!-- ============== TOP NAVIGATION ============== -->
   <nav class="site-nav" aria-label="Primary">
-    <a href="index.html" class="nav-brand">Sethu Madhavan R S</a>
+    <a href="index.html" class="nav-brand">Sedhu Mathavan R S</a>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
@@ -28,8 +28,9 @@
         <ul class="dropdown-menu">
           <li><a href="pages/work-screenplay.html">Screenplay Writer</a></li>
           <li><a href="pages/work-director.html">Director</a></li>
-          <li><a href="pages/work-production-designer.html">Production Designer</a></li>
+          <li><a href="pages/work-production-designer.html">Asst. Production Designer</a></li>
           <li><a href="pages/work-actor.html">Actor</a></li>
+          <li><a href="pages/work-photographer.html">Photographer</a></li>
         </ul>
       </li>
       <li><a href="#contact">Contact</a></li>
@@ -52,15 +53,12 @@
     <!-- 2. Soft lavender overlay — keeps name and photo readable -->
     <div class="hero-bg-overlay"></div>
 
-    <!-- 3. Foreground content — name lives in the top nav already, so the
-            hero now leads with a quote instead of repeating the name. -->
-    <div class="hero-text">
-      <blockquote class="hero-quote-main" id="hero-main-quote">
-        <p class="hero-quote-line">Stories first.</p>
-        <p class="hero-quote-line hero-quote-line--accent">Everything else, second.</p>
-        <cite class="hero-quote-cite">— Writer · Director · Storyteller</cite>
-      </blockquote>
-    </div>
+    <!-- 3. Foreground content — intentionally empty. The brand name lives in
+            the top navigation; the hero is now a clean video stage. The .hero
+            grid still keeps its column structure so layout (and parallax
+            offsets in main.js) continue to behave the same way on every
+            screen size. -->
+    <div class="hero-text" aria-hidden="true"></div>
 
     <div class="hero-portrait">
       <img id="hero-portrait-img" src="images/image.jpg" alt="image">
@@ -84,8 +82,10 @@
   <!-- ============== ACCOLADES ============== -->
   <section class="accolades reveal" id="accolades">
     <div class="container">
-      <h2 class="section-title">Accolades & Achievements</h2>
-      <div class="accolades-grid" id="accolades-grid">
+      <!-- data-parallax-speed: heading drifts a touch slower than the page,
+           giving the section a layered, depth-aware feel. -->
+      <h2 class="section-title" data-parallax-speed="0.06">Accolades & Achievements</h2>
+      <div class="accolades-grid" id="accolades-grid" data-parallax-speed="0.04">
         <!-- filled by inline script below -->
       </div>
     </div>
@@ -97,9 +97,14 @@
        the card opens that category page. Direction alternates per card. -->
   <section class="reveal" id="work-highlights">
     <div class="container">
-      <h2 class="section-title">Work Highlights</h2>
+      <h2 class="section-title" data-parallax-speed="0.06">Work Highlights</h2>
     </div>
 
+    <!-- 5 portrait-oriented cards laid out 2-2-1: row 1 Screenplay/Director,
+         row 2 Asst. PD / Photographer, row 3 Actor centered.
+         The 5th card uses .bento-card--center to span both grid columns
+         and centre itself at the natural card width. On mobile (≤720px)
+         the grid collapses to 1 column so this rule becomes a no-op. -->
     <div class="work-bento">
       <a class="bento-card" href="pages/work-screenplay.html">
         <div class="bento-marquee" data-bento data-category="screenplay"></div>
@@ -120,12 +125,20 @@
       <a class="bento-card" href="pages/work-production-designer.html">
         <div class="bento-marquee" data-bento data-category="productionDesigner"></div>
         <div class="bento-label">
-          <h3>Production Designer</h3>
+          <h3>Asst. Production Designer</h3>
           <span class="arrow">→</span>
         </div>
       </a>
 
-      <a class="bento-card" href="pages/work-actor.html">
+      <a class="bento-card" href="pages/work-photographer.html">
+        <div class="bento-marquee" data-bento data-category="photographer"></div>
+        <div class="bento-label">
+          <h3>Photographer</h3>
+          <span class="arrow">→</span>
+        </div>
+      </a>
+
+      <a class="bento-card bento-card--center" href="pages/work-actor.html">
         <div class="bento-marquee" data-bento data-category="actor"></div>
         <div class="bento-label">
           <h3>Actor</h3>
@@ -138,8 +151,8 @@
   <!-- ============== CONTACT PREVIEW ============== -->
   <section class="contact-preview reveal" id="contact">
     <div class="container">
-      <h2 class="section-title">Get In Touch</h2>
-      <p class="quote" id="hero-quote">
+      <h2 class="section-title" data-parallax-speed="0.06">Get In Touch</h2>
+      <p class="quote" id="hero-quote" data-parallax-speed="0.05">
         Every great film is just a script that refused to stay on the page.
       </p>
       <div class="contact-info">
@@ -155,7 +168,7 @@
 
   <!-- ============== FOOTER ============== -->
   <footer class="site-footer">
-    © <span id="year"></span> Sethu Madhavan R S. All stories reserved.
+    © <span id="year"></span> Sedhu Mathavan R S. All stories reserved.
   </footer>
 
   <!-- ============== FLOATING CONTACT BUTTON ============== -->
