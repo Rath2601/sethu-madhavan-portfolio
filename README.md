@@ -1,4 +1,4 @@
-# Sedhu Mathavan R S — Portfolio Website
+# Sethu Madhavan R S — Portfolio Website
 
 A clean, cinematic portfolio for a screenwriter / director / production designer / actor.
 Built with **plain HTML, CSS, and JavaScript** — no build tools, no frameworks. Just open the files in a browser.
@@ -191,5 +191,5 @@ All three are loaded for free from Google Fonts. To swap a font, change the `<li
 
 ## 10. Credits
 
-Code, copy, and design scaffolded for Sedhu Mathavan R S.
+Code, copy, and design scaffolded for Sethu Madhavan R S.
 Free to extend, restyle, and rewrite.

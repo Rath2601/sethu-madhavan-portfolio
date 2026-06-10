@@ -37,12 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </p>
       </section>
     `;
-    document.title = "Not found — Sedhu Mathavan R S";
+    document.title = "Not found — Sethu Madhavan R S";
     return;
   }
 
   // Update the document title for nicer browser tabs and SEO.
-  document.title = `${work.title} — Sedhu Mathavan R S`;
+  document.title = `${work.title} — Sethu Madhavan R S`;
 
   // Build all the visual sections.
   // Note: the Behind-the-Scenes gallery has been removed per design.

@@ -1,5 +1,5 @@
 /* ============================================================
-   MAIN STYLESHEET — Sedhu Mathavan R S Portfolio
+   MAIN STYLESHEET — Sethu Madhavan R S Portfolio
    ------------------------------------------------------------
    Edit any color, font, or size in the :root section below
    and the change will apply across the whole site.
@@ -108,13 +108,20 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
 .nav-brand {
   /* Brand wordmark: bold sans-serif as requested. The system sans stack
      keeps it lightweight (no extra font fetch) while feeling modern next
-     to the cinematic serif nav links. */
+     to the cinematic serif nav links.
+     Size is scaled with clamp() so it sits noticeably bigger on desktop
+     than the surrounding nav links, while staying within the nav bar
+     height on phones (where the hamburger sits at 1.6rem).
+       • narrow phones: 1.35rem
+       • tablets / laptops: scales with viewport
+       • wide desktop: caps at 1.85rem */
   font-family: var(--font-sans);
   font-weight: 700;
-  font-size: 1.2rem;
-  letter-spacing: 0.14em;
+  font-size: clamp(1.35rem, 0.7rem + 1.4vw, 1.85rem);
+  letter-spacing: 0.12em;
   color: var(--text-primary);
   text-transform: uppercase;
+  line-height: 1.1;
 }
 
 .nav-menu {
@@ -1171,7 +1178,11 @@ section {
        same kind of warm canvas as the About paper, just lighter. */
 .intro-section {
   position: relative;
-  background-color: #f9f3e6;   /* warm cream — gentle contrast vs body */
+  /* Lavender from the existing palette (--bg-tint, #e9defb) so the
+     section sits inside the theme. It's distinct enough from the body's
+     gradient (which is bg-base → bg-soft) to read as its own "tile",
+     and the line-art pattern overlay still contrasts cleanly against it. */
+  background-color: var(--bg-tint);
   overflow: hidden;             /* keeps the pattern crisply inside */
 }
 .intro-section::before {

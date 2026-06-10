@@ -1,4 +1,4 @@
-# Session Notes — Sedhu Mathavan R S Portfolio
+# Session Notes — Sethu Madhavan R S Portfolio
 
 A running memo of everything built and decided in this session. Drop this file in front of a fresh assistant and it should be able to pick up without losing context.
 
@@ -6,7 +6,7 @@ A running memo of everything built and decided in this session. Drop this file i
 
 ## 1. Project at a glance
 
-**What it is.** A static portfolio website for **Sedhu Mathavan R S** — screenwriter / director / production designer / actor based in Chennai. Goal: help him get hired by film producers and directors. Tone: cinematic but clean, lavender-and-white palette, blend of "funny & quirky / minimalist & intellectual / commercial & mainstream".
+**What it is.** A static portfolio website for **Sethu Madhavan R S** — screenwriter / director / production designer / actor based in Chennai. Goal: help him get hired by film producers and directors. Tone: cinematic but clean, lavender-and-white palette, blend of "funny & quirky / minimalist & intellectual / commercial & mainstream".
 
 **Tech.** Plain HTML, CSS, vanilla JavaScript. No build step, no framework. Designed so a non-developer can edit it (with AI help) by changing one or two files.
 
@@ -141,7 +141,7 @@ Image placeholders use `picsum.photos` seeded on the work's slug — same projec
 - Removed the dotted column on the left of hero
 - Redesigned the portrait frame — replaced the giant solid purple circle with a soft photo frame: rounded rectangle with white border, drop shadow, single warm cream accent + small lavender accents
 - Stripped hero text to just the name (greeting / tagline / intro paragraph / CTAs / experience badge / stats pill all removed)
-- Renamed everywhere: **Sethu Mathavan → Sedhu Mathavan R S** (titles, nav brand, footers, About copy, data.js, work-detail.js, README, CSS comment)
+- Renamed everywhere: **Sethu Mathavan → Sethu Madhavan R S** (titles, nav brand, footers, About copy, data.js, work-detail.js, README, CSS comment)
 - Replaced the 4 separate carousels with a **bento layout**: four big category cards in a 2×2 grid, each card containing its own scrolling marquee of poster images, hover pauses scroll, click opens that category page
 - Floating button changed from circular ✉ icon to a pill labeled "Get In Touch" with a small ✉ glyph
 
@@ -177,7 +177,7 @@ Image placeholders use `picsum.photos` seeded on the work's slug — same projec
 - 0 broken cross-links across all 8 HTML pages (Python link-checker)
 - All HTML `<div>` tags balanced
 - FAB on every page reads "Get In Touch"
-- No leftover "Sethu Mathavan" references — every reference is "Sedhu Mathavan R S"
+- No leftover "Sethu Mathavan" references — every reference is "Sethu Madhavan R S"
 - 4 bento marquees in `index.html` (one per category)
 - Hero video file present at `videos/hero-bg.mp4` (1.1 MB)
 
