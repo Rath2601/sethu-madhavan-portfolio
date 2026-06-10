@@ -37,36 +37,40 @@
     </ul>
   </nav>
 
-  <!-- ============== HERO — name + photo on video background ============== -->
+  <!-- ============== HERO — restored, without the photo ==============
+       The hero top section is back, but intentionally photo-free:
+         • the .hero-bg-image (background photo) div is removed
+         • the .hero-portrait <img> is removed
+       What remains: the lavender overlay wash, the empty video stage
+       (no source file, used to hold the visual frame), and the empty
+       hero-text + hero-portrait grid columns so the layout / parallax
+       offsets in main.js keep behaving the same on every screen size.
+  =============================================================== -->
   <header class="hero">
-    <!-- 1. Looping background video. Muted + playsinline so it autoplays
-            on every browser. To swap, drop a new file at videos/hero-bg.mp4. -->
+    <!-- Looping background video — kept as a structural stage. The
+         src is intentionally absent on disk so nothing actually plays
+         (no photo / no auto-rolling reel). Drop a file at
+         videos/hero-bg.mp4 later to bring the showreel back. -->
     <video class="hero-bg-video" autoplay muted loop playsinline preload="auto"
            aria-hidden="true">
       <source src="videos/hero-bg.mp4" type="video/mp4">
     </video>
 
-    <!-- 1b. Slow-drifting background image — confined to the hero section
-            via overflow:hidden on .hero. Acts as ambient backdrop. -->
-    <div class="hero-bg-image" aria-hidden="true"></div>
-
-    <!-- 2. Soft lavender overlay — keeps name and photo readable -->
+    <!-- Soft lavender overlay — creates the cinematic top-of-page wash. -->
     <div class="hero-bg-overlay"></div>
 
-    <!-- 3. Foreground content — intentionally empty. The brand name lives in
-            the top navigation; the hero is now a clean video stage. The .hero
-            grid still keeps its column structure so layout (and parallax
-            offsets in main.js) continue to behave the same way on every
-            screen size. -->
+    <!-- Foreground content kept empty so the brand wordmark in the top
+         navigation does the talking. .hero-portrait stays in the markup
+         (CSS already display:none-s it on this page) so the parallax JS
+         finds the same elements it expects. -->
     <div class="hero-text" aria-hidden="true"></div>
-
-    <div class="hero-portrait">
-      <img id="hero-portrait-img" src="images/image.jpg" alt="image">
-    </div>
+    <div class="hero-portrait" aria-hidden="true"></div>
   </header>
 
   <!-- ============== INTRODUCTION ============== -->
-  <section class="reveal">
+  <!-- intro-section: gets the tiled line-art background (see CSS).
+       reveal stays so the existing fade-in animation still fires. -->
+  <section class="reveal intro-section">
     <div class="container" style="text-align:center; max-width:760px;">
       <h2 class="section-title">A Short Introduction</h2>
       <p style="font-size:1.1rem;">
@@ -100,11 +104,12 @@
       <h2 class="section-title" data-parallax-speed="0.06">Work Highlights</h2>
     </div>
 
-    <!-- 5 portrait-oriented cards laid out 2-2-1: row 1 Screenplay/Director,
-         row 2 Asst. PD / Photographer, row 3 Actor centered.
-         The 5th card uses .bento-card--center to span both grid columns
-         and centre itself at the natural card width. On mobile (≤720px)
-         the grid collapses to 1 column so this rule becomes a no-op. -->
+    <!-- Only two cards on the home page for now: Screenplay Writer and
+         Director. The Asst. Production Designer / Photographer / Actor
+         cards (and their image files in /images/works/) are intentionally
+         preserved in the project so they can be re-enabled later by
+         pasting their markup back into this block. The data.js entries
+         for those categories are also kept untouched. -->
     <div class="work-bento">
       <a class="bento-card" href="pages/work-screenplay.html">
         <div class="bento-marquee" data-bento data-category="screenplay"></div>
@@ -118,30 +123,6 @@
         <div class="bento-marquee" data-bento data-category="director"></div>
         <div class="bento-label">
           <h3>Director</h3>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-
-      <a class="bento-card" href="pages/work-production-designer.html">
-        <div class="bento-marquee" data-bento data-category="productionDesigner"></div>
-        <div class="bento-label">
-          <h3>Asst. Production Designer</h3>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-
-      <a class="bento-card" href="pages/work-photographer.html">
-        <div class="bento-marquee" data-bento data-category="photographer"></div>
-        <div class="bento-label">
-          <h3>Photographer</h3>
-          <span class="arrow">→</span>
-        </div>
-      </a>
-
-      <a class="bento-card bento-card--center" href="pages/work-actor.html">
-        <div class="bento-marquee" data-bento data-category="actor"></div>
-        <div class="bento-label">
-          <h3>Actor</h3>
           <span class="arrow">→</span>
         </div>
       </a>

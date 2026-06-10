@@ -24,6 +24,11 @@
   --font-body:       'Cormorant Garamond', Georgia, serif;
   --font-typewriter: 'Courier Prime', 'Courier New', monospace;
   --font-slab:       'Roboto Slab', 'Bitter', Georgia, serif;
+  /* System sans stack — used for the brand wordmark in the header.
+     No external font fetch needed: rendered with native system UI fonts
+     so it loads instantly and looks crisp at small sizes. */
+  --font-sans:       -apple-system, BlinkMacSystemFont, 'Segoe UI',
+                     Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   /* Layout */
   --max-width: 1200px;
@@ -38,7 +43,10 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  font-size: 18px;
+  /* Bumped from 18px → 20px so all rem-based copy reads larger across
+     the site. Rem-sized headings, buttons, cards and section text all
+     scale up automatically; px-sized UI elements stay where they are. */
+  font-size: 20px;
   line-height: 1.6;
   color: var(--text-primary);
   background: linear-gradient(180deg, var(--bg-base) 0%, var(--bg-soft) 100%);
@@ -98,9 +106,13 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
 }
 
 .nav-brand {
-  font-family: var(--font-serif);
+  /* Brand wordmark: bold sans-serif as requested. The system sans stack
+     keeps it lightweight (no extra font fetch) while feeling modern next
+     to the cinematic serif nav links. */
+  font-family: var(--font-sans);
+  font-weight: 700;
   font-size: 1.2rem;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   color: var(--text-primary);
   text-transform: uppercase;
 }
@@ -709,12 +721,18 @@ section {
   background: var(--bg-base);
   padding: 4rem 1.5rem;
   min-height: 70vh;
+  /* Becomes the positioning context for the decorative line-art doodles
+     scattered around the paper (see .about-doodle below). */
+  position: relative;
+  overflow: hidden;
 }
 .about-paper {
   max-width: 720px;
   margin: 0 auto;
   background: #fffdf6;
-  border: 1px solid var(--border-soft);
+  /* Border removed per design — the paper now floats on the cream/lavender
+     background with only a soft shadow holding it down. */
+  border: none;
   padding: 3rem 2.5rem;
   box-shadow: var(--shadow-soft);
   font-family: var(--font-typewriter);
@@ -722,6 +740,74 @@ section {
   line-height: 1.9;
   color: #2a2733;
   white-space: pre-wrap;
+  /* Sits above the decorative doodles. */
+  position: relative;
+  z-index: 1;
+}
+
+/* --- Decorative line-art doodles around the paper ---
+   Small, subtle SVGs scattered in the negative space around the
+   typewriter paper to fill the visual gaps. Each doodle uses a soft
+   lavender stroke so it reads as ambient decoration, not content.
+   They're absolutely positioned within .about-page (which now has
+   overflow:hidden + position:relative) so they never overflow the
+   section or push the page wider.
+
+   On narrower screens we hide them progressively so they never crowd
+   the paper on phones / small tablets. */
+.about-doodle {
+  position: absolute;
+  z-index: 0;
+  width: 96px;
+  height: 96px;
+  color: var(--accent);
+  opacity: 0.18;
+  pointer-events: none;
+  user-select: none;
+  transition: opacity 0.4s ease;
+}
+.about-doodle svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Position each doodle. Tilt and size vary so the layout feels organic
+   rather than gridded. */
+.about-doodle--clapper    { top: 6%;   left: 4%;   transform: rotate(-12deg); }
+.about-doodle--camera     { top: 8%;   right: 5%;  transform: rotate( 10deg); width: 108px; height: 108px; }
+.about-doodle--coffee     { top: 38%;  left: 3%;   transform: rotate(  6deg); width: 84px;  height: 84px;  }
+.about-doodle--typewriter { top: 42%;  right: 3%;  transform: rotate( -8deg); width: 116px; height: 116px; }
+.about-doodle--pencil     { bottom: 12%;left: 6%;  transform: rotate( -22deg); width: 92px; height: 92px;  }
+.about-doodle--film       { bottom: 8%; right: 4%; transform: rotate(  14deg); width: 110px; height: 110px; }
+.about-doodle--star       { top: 22%;  left: 50%;  transform: translateX(-380px) rotate(15deg); width: 54px; height: 54px; }
+.about-doodle--bulb       { bottom: 30%;left: 50%; transform: translateX( 340px) rotate(-10deg); width: 60px; height: 60px; }
+
+@media (max-width: 1100px) {
+  /* Bring centre-floating doodles closer in so they don't sit too far
+     from the paper on narrower laptops. */
+  .about-doodle--star { transform: translateX(-260px) rotate(15deg); }
+  .about-doodle--bulb { transform: translateX( 230px) rotate(-10deg); }
+}
+@media (max-width: 880px) {
+  /* Hide the centre-floating accents that would clash with the paper. */
+  .about-doodle--star,
+  .about-doodle--bulb { display: none; }
+  /* Shrink the rest. */
+  .about-doodle { width: 72px; height: 72px; opacity: 0.14; }
+  .about-doodle--camera,
+  .about-doodle--typewriter,
+  .about-doodle--film { width: 80px; height: 80px; }
+}
+@media (max-width: 640px) {
+  /* On phones the paper takes most of the screen width — hide all the
+     decorative doodles so they never overlap the body text. */
+  .about-doodle { display: none; }
 }
 .about-paper h1 {
   font-family: var(--font-typewriter);
@@ -1066,6 +1152,52 @@ section {
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---------- 15b. Introduction section line-art pattern ---------- */
+/* "A Short Introduction" gets a tiled line-art background made of small
+   film / writing icons (clapper, camera, pencil, coffee, typewriter, film
+   reel, lightbulb, star). The tile lives at /images/intro-pattern.svg.
+   The pattern is painted by a ::before pseudo-element so it never
+   interferes with the section's content or its reveal-on-scroll animation
+   (which animates the section's own opacity / transform).
+
+   Scaling notes:
+     • background-size is set in px so the icons stay a consistent visual
+       weight regardless of how wide the viewport gets.
+     • opacity is intentionally low (≈0.16) so text remains very readable.
+     • we tint the section with a tiny extra cream so the pattern reads
+       against a slightly different shade than the surrounding page —
+       same kind of warm canvas as the About paper, just lighter. */
+.intro-section {
+  position: relative;
+  background-color: #f9f3e6;   /* warm cream — gentle contrast vs body */
+  overflow: hidden;             /* keeps the pattern crisply inside */
+}
+.intro-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/intro-pattern.svg');
+  background-repeat: repeat;
+  background-size: 220px 220px;
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+/* All children float above the pattern. */
+.intro-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Smaller pattern tile on phones so the icons stay legible at the same
+   on-screen size and don't crowd the narrow column. */
+@media (max-width: 640px) {
+  .intro-section::before {
+    background-size: 170px 170px;
+    opacity: 0.13;
+  }
 }
 
 /* ---------- 16. Individual work detail page ---------- */
