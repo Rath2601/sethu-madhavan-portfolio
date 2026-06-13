@@ -565,15 +565,30 @@ section {
 .accolades {
   background: var(--bg-soft);
 }
+/* Stack of category groups (Non-Fiction / Fiction). */
 .accolades-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 3rem;
+}
+/* Category heading with a short gold rule, matching section-title style. */
+.accolade-group__title {
+  font-family: var(--font-head, inherit);
+  font-size: 1.4rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  color: var(--text-primary);
+}
+.accolade-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 .accolade-card {
   background: var(--bg-base);
-  padding: 2rem 1.5rem;
-  text-align: center;
+  padding: 1.75rem 1.5rem;
+  text-align: left;
   border-radius: var(--radius);
   border: 1px solid var(--border-soft);
   transition: transform var(--transition), box-shadow var(--transition);
@@ -583,17 +598,32 @@ section {
   box-shadow: var(--shadow-hover);
 }
 .accolade-card .icon {
-  font-size: 2rem;
-  margin-bottom: 0.6rem;
+  font-size: 1.9rem;
+  margin-bottom: 0.5rem;
   color: var(--accent);
 }
-.accolade-card h3 {
-  font-size: 1.1rem;
-  margin-bottom: 0.4rem;
+.accolade-card h4 {
+  font-size: 1.15rem;
+  margin: 0 0 0.25rem;
 }
-.accolade-card p {
-  font-size: 0.95rem;
-  margin-bottom: 0;
+.accolade-meta {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin: 0 0 0.9rem;
+}
+.accolade-fests {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  margin: 0;
+  color: var(--text-secondary, var(--text-primary));
+}
+.accolade-note {
+  font-size: 0.82rem;
+  font-style: italic;
+  margin: 0.4rem 0 0;
+  opacity: 0.8;
 }
 
 /* ---------- 8. Carousel (work highlights) ---------- */
@@ -740,13 +770,12 @@ section {
   /* Border removed per design — the paper now floats on the cream/lavender
      background with only a soft shadow holding it down. */
   border: none;
-  padding: 3rem 2.5rem;
+  padding: 2.75rem 2.5rem;
   box-shadow: var(--shadow-soft);
   font-family: var(--font-typewriter);
   font-size: 1rem;
-  line-height: 1.9;
+  line-height: 1.7;
   color: #2a2733;
-  white-space: pre-wrap;
   /* Sits above the decorative doodles. */
   position: relative;
   z-index: 1;
@@ -822,10 +851,22 @@ section {
   text-align: center;
   letter-spacing: 0.04em;
   border-bottom: 1px dashed var(--text-muted);
-  padding-bottom: 1rem;
-  margin-bottom: 2rem;
+  padding-bottom: 0.85rem;
+  margin-bottom: 1.5rem;
 }
-.about-paper p { color: #2a2733; margin-bottom: 1.2rem; }
+.about-paper p { color: #2a2733; margin-bottom: 1rem; }
+.about-paper p:last-of-type { margin-bottom: 0; }
+/* Screenplay cues (FADE IN: / CUT TO:) — right-aligned, uppercase,
+   spaced like slug lines on a script page. */
+.about-paper .script-cue {
+  text-align: right;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  color: var(--accent);
+  margin: 0 0 1.25rem;
+}
+.about-paper .script-cue:last-of-type { margin: 1.5rem 0 0; }
 .about-paper .signature {
   margin-top: 2rem;
   font-style: italic;
@@ -1178,7 +1219,7 @@ section {
        same kind of warm canvas as the About paper, just lighter. */
 .intro-section {
   position: relative;
-  padding: 7.5rem 0;            /* taller section → slightly longer page */
+  padding: 0;                   /* image runs full-bleed top→bottom */
   /* Lavender from the existing palette (--bg-tint, #e9defb) so the
      section sits inside the theme. It's distinct enough from the body's
      gradient (which is bg-base → bg-soft) to read as its own "tile",
@@ -1203,43 +1244,43 @@ section {
   z-index: 1;
 }
 
-/* Two-column container — copy on the left, image on the right. */
+/* Two-column container — copy fills 60% on the left, image fills the
+   remaining 40% on the right with no gap. Full-bleed: no max-width and
+   no horizontal padding, so the photo touches the right edge. */
 .intro-container {
   display: grid;
-  grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 1fr);
-  gap: 3rem;
-  align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
+  grid-template-columns: 60% 40%;
+  gap: 0;
+  align-items: stretch;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  min-height: 560px;            /* gives the photo column height to fill */
 }
 
-/* Image side — landscape stage photo framed like the hero portrait
-   used to be (rounded card, soft shadow, slight tilt that straightens
-   on hover). */
+/* Image side — fills its 40% column completely, edge to edge. */
 .intro-image {
   margin: 0;
-  display: flex;
-  justify-content: center;
+  height: 100%;
+  overflow: hidden;
 }
 .intro-image img {
   width: 100%;
-  max-width: 480px;
-  height: auto;
+  height: 100%;
+  max-width: none;
   object-fit: cover;
-  border-radius: 14px;
-  background: var(--bg-base);
-  box-shadow:
-    0 24px 48px rgba(75, 53, 130, 0.28),
-    0 0 0 1px var(--border-soft);
-  transform: rotate(-0.6deg);
+  display: block;
   transition: transform var(--transition);
 }
 .intro-image img:hover {
-  transform: rotate(0deg) scale(1.02);
+  transform: scale(1.03);
 }
 
-/* Copy side — title + paragraph, left-aligned next to the image. */
-.intro-copy { text-align: left; }
+/* Copy side — title + paragraph, padded away from the page edge. */
+.intro-copy {
+  text-align: left;
+  padding: 4rem clamp(2rem, 5vw, 5rem);
+}
 .intro-copy .intro-title {
   text-align: left;
   margin-bottom: 1.25rem;
@@ -1259,14 +1300,17 @@ section {
 @media (max-width: 880px) {
   .intro-container {
     grid-template-columns: 1fr;
-    gap: 2rem;
-    max-width: 720px;
+    gap: 0;
+    min-height: 0;
   }
-  .intro-image { order: -1; }   /* image first when stacked */
-  .intro-copy { text-align: center; }
+  .intro-image { order: -1; height: auto; }   /* image first when stacked */
+  .intro-image img { height: auto; max-height: 60vh; }
+  .intro-copy {
+    text-align: center;
+    padding: 3rem clamp(1.5rem, 6vw, 3rem);
+  }
   .intro-copy .intro-title { text-align: center; }
   .intro-copy .intro-title::after { margin-left: auto; margin-right: auto; }
-  .intro-image img { max-width: 420px; }
 }
 
 /* Smaller pattern tile on phones so the icons stay legible at the same
@@ -1276,7 +1320,6 @@ section {
     background-size: 170px 170px;
     opacity: 0.18;
   }
-  .intro-image img { max-width: 360px; }
 }
 
 /* ---------- 16. Individual work detail page ---------- */

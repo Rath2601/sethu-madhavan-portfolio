@@ -36,26 +36,65 @@ window.PORTFOLIO_DATA = {
   },
 
   // --- Accolades shown on home page -----------------------
+  // Grouped into Non-Fiction and Fiction. Every festival entry is its
+  // own card. Each item:
+  //   work     — title of the work (or its form, if untitled)
+  //   meta     — "Form · Role"
+  //   festival — "Festival (edition) — Position"
+  //   note     — optional extra line
   accolades: [
     {
-      icon: "🎬",
-      title: "Kolkata International Film Festival",
-      subtitle: "JATRA PALA · LIPI — 31st Edition"
+      category: "Non-Fiction",
+      items: [
+        {
+          icon: "🎬",
+          work: "Jatra Pala",
+          meta: "Documentary · Screenwriter",
+          festival: "37th Kolkata Intl Film Festival — Competition"
+        },
+        {
+          icon: "🎬",
+          work: "Jatra Pala",
+          meta: "Documentary · Screenwriter",
+          festival: "16th Jaipur Intl Film Festival — Competition"
+        },
+        {
+          icon: "🎬",
+          work: "Jatra Pala",
+          meta: "Documentary · Screenwriter",
+          festival: "9th Intl Folklore Film Festival (IFFF) — Competition"
+        },
+        {
+          icon: "🎬",
+          work: "Jatra Pala",
+          meta: "Documentary · Screenwriter",
+          festival: "19th Mumbai Intl Film Festival — Competition"
+        }
+      ]
     },
     {
-      icon: "🏆",
-      title: "SWA Script Lab & Pitch Fest 2025",
-      subtitle: "BLIND SPOT · Stage-I Selection"
-    },
-    {
-      icon: "✒️",
-      title: "17th IDSFFK Kerala",
-      subtitle: "WHAT'S IN A NAME — Official Selection"
-    },
-    {
-      icon: "🌟",
-      title: "Jaipur Intl Film Fest · Folklore IFFF",
-      subtitle: "JATRA PALA — 16th JIFF · 9th IFFF"
+      category: "Fiction",
+      items: [
+        {
+          icon: "🏆",
+          work: "Web Series",
+          meta: "Web Series · Screenwriter",
+          festival: "SWA Script Lab & Pitch Fest 2025 — Selected · Stage 1"
+        },
+        {
+          icon: "🎭",
+          work: "What's in a Name",
+          meta: "Short Film · Actor (Protagonist)",
+          festival: "17th IDSFFK Kerala — Official Selection"
+        },
+        {
+          icon: "🎬",
+          work: "Lipi",
+          meta: "Mise-en-scène · Chief Assistant Director",
+          festival: "35th Kolkata Intl Film Festival — Screened",
+          note: "& many other international film festivals"
+        }
+      ]
     }
   ],
 
@@ -147,17 +186,6 @@ window.PORTFOLIO_DATA = {
         status: "Completed",
         poster: "images/works/velicham.jpeg",
         hero:   "images/works/velicham.jpeg"
-      },
-      {
-        slug: "jatra-pala",
-        title: "Jatra Pala",
-        genre: "Documentary",
-        logline: "Bengal's beloved folk theatre, fighting for its place in the modern age.",
-        summary: "Jatra Pala explores Bengal's beloved folk theatre as it transforms in the modern age. Veterans recall lantern-lit nights of cultural glory, lamenting its decline, while a new wave of fresh talents fights digital dominance. A heartfelt documentary capturing a resilient art form's struggle, spirit, and enduring place in Bengal's soul.",
-        status: "Kolkata IFF · Jaipur IFF · IFFF",
-        poster: "images/works/jatra-pala.jpeg",
-        hero:   "images/works/jatra-pala.jpeg",
-        notes: "Screened at the 31st Kolkata International Film Festival, 16th Jaipur International Film Festival, and the 9th International Folklore Film Festival (IFFF)."
       },
       {
         slug: "lipi",

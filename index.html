@@ -177,15 +177,24 @@
 
   <!-- Inline: small bits that depend on profile/accolades data ----- -->
   <script>
-    // Fill accolades cards
+    // Fill accolades — grouped by category (Non-Fiction / Fiction)
     (function () {
-      const grid = document.getElementById('accolades-grid');
-      const items = (window.PORTFOLIO_DATA?.accolades) || [];
-      grid.innerHTML = items.map(a => `
-        <div class="accolade-card">
-          <div class="icon">${a.icon}</div>
-          <h3>${a.title}</h3>
-          <p>${a.subtitle}</p>
+      const wrap = document.getElementById('accolades-grid');
+      const groups = (window.PORTFOLIO_DATA?.accolades) || [];
+      wrap.innerHTML = groups.map(g => `
+        <div class="accolade-group">
+          <h3 class="accolade-group__title">${g.category}</h3>
+          <div class="accolade-cards">
+            ${g.items.map(a => `
+              <div class="accolade-card">
+                <div class="icon">${a.icon}</div>
+                <h4>${a.festival}</h4>
+                <p class="accolade-meta">${a.meta}</p>
+                <p class="accolade-fests">${a.work}</p>
+                ${a.note ? `<p class="accolade-note">${a.note}</p>` : ''}
+              </div>
+            `).join('')}
+          </div>
         </div>
       `).join('');
     })();
