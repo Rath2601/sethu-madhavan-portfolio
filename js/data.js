@@ -23,9 +23,12 @@
 window.PORTFOLIO_DATA = {
   // --- Writer profile (edit your details here) -------------
   profile: {
-    name: "Sethu Madhavan R S",
-    portrait: "images/works/photo-portrait.jpeg", // your real photo (jpg/png)
-    portraitFallback: "images/image.jpg",         // shown if the jpg is missing
+    name: "Sedhu Mathavan R S",
+    /* Hero stage photo. The inline <script> in index.html applies this
+       value to #hero-portrait-img, which is why a stale value here used
+       to override whatever was set in the HTML directly. */
+    portrait: "images/sedhu-hero.webp",
+    portraitFallback: "images/sedhu-hero.webp",
     email: "writterrs07@gmail.com",
     phone: "+91 98765 43210",
     location: "Chennai · India",
@@ -139,7 +142,7 @@ window.PORTFOLIO_DATA = {
         slug: "velicham",
         title: "Velicham",
         genre: "Short Film",
-        logline: "A short film by Sethu Madhavan R S — directed and production designed.",
+        logline: "A short film by Sedhu Mathavan R S — directed and production designed.",
         summary: "Velicham (வெளிச்சம் — \"light\") is a short film directed and production designed by Sethu. A quiet, image-led piece on the spaces between people.",
         status: "Completed",
         poster: "images/works/velicham.jpeg",

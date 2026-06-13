@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sethu Madhavan R S — Writer · Director · Storyteller</title>
-  <meta name="description" content="Portfolio of Sethu Madhavan R S — screenwriter, director, production designer, actor. Cinematic stories with quiet intelligence." />
+  <title>Sedhu Mathavan R S — Writer · Director · Storyteller</title>
+  <meta name="description" content="Portfolio of Sedhu Mathavan R S — screenwriter, director, production designer, actor. Cinematic stories with quiet intelligence." />
 
   <!-- Google Fonts: Cinzel (serif headlines), Cormorant (body),
        Courier Prime (typewriter), Roboto Slab (slab-serif headline name) -->
@@ -18,7 +18,7 @@
 
   <!-- ============== TOP NAVIGATION ============== -->
   <nav class="site-nav" aria-label="Primary">
-    <a href="index.html" class="nav-brand">Sethu Madhavan R S</a>
+    <a href="index.html" class="nav-brand">Sedhu Mathavan R S</a>
     <button class="nav-toggle" aria-label="Toggle menu">☰</button>
     <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
@@ -37,49 +37,29 @@
     </ul>
   </nav>
 
-  <!-- ============== HERO — restored, without the photo ==============
-       The hero top section is back, but intentionally photo-free:
-         • the .hero-bg-image (background photo) div is removed
-         • the .hero-portrait <img> is removed
-       What remains: the lavender overlay wash, the empty video stage
-       (no source file, used to hold the visual frame), and the empty
-       hero-text + hero-portrait grid columns so the layout / parallax
-       offsets in main.js keep behaving the same on every screen size.
-  =============================================================== -->
-  <header class="hero">
-    <!-- Looping background video — kept as a structural stage. The
-         src is intentionally absent on disk so nothing actually plays
-         (no photo / no auto-rolling reel). Drop a file at
-         videos/hero-bg.mp4 later to bring the showreel back. -->
-    <video class="hero-bg-video" autoplay muted loop playsinline preload="auto"
-           aria-hidden="true">
-      <source src="videos/hero-bg.mp4" type="video/mp4">
-    </video>
-
-    <!-- Soft lavender overlay — creates the cinematic top-of-page wash. -->
-    <div class="hero-bg-overlay"></div>
-
-    <!-- Foreground content kept empty so the brand wordmark in the top
-         navigation does the talking. .hero-portrait stays in the markup
-         (CSS already display:none-s it on this page) so the parallax JS
-         finds the same elements it expects. -->
-    <div class="hero-text" aria-hidden="true"></div>
-    <div class="hero-portrait" aria-hidden="true"></div>
-  </header>
-
   <!-- ============== INTRODUCTION ============== -->
-  <!-- intro-section: gets the tiled line-art background (see CSS).
-       reveal stays so the existing fade-in animation still fires. -->
+  <!-- intro-section:
+         • Tiled line-art background (handled in CSS).
+         • Two-column layout: B&W stage photo on the LEFT, intro copy on
+           the RIGHT. Mobile collapses to a single column (image first,
+           text below). The reveal class keeps the fade-in animation. -->
   <section class="reveal intro-section">
-    <div class="container" style="text-align:center; max-width:760px;">
-      <h2 class="section-title">A Short Introduction</h2>
-      <p style="font-size:1.1rem;">
-        Based in Chennai, working in Tamil and English. Comfortable in
-        the writers' room, behind the camera, and — when truly cornered
-        — in front of it. I like films that take their time, characters
-        that say less than they mean, and the kind of comedy that doesn't
-        announce itself.
-      </p>
+    <div class="container intro-container">
+      <div class="intro-copy">
+        <h2 class="section-title intro-title">A Short Introduction</h2>
+        <p class="intro-paragraph">
+          Based in Chennai, working in Tamil and English. Comfortable in
+          the writers' room, behind the camera, and — when truly cornered
+          — in front of it. I like films that take their time, characters
+          that say less than they mean, and the kind of comedy that doesn't
+          announce itself.
+        </p>
+      </div>
+      <figure class="intro-image">
+        <img src="images/sedhu-mathavan.jpg"
+             alt="Sedhu Mathavan R S on stage"
+             loading="lazy">
+      </figure>
     </div>
   </section>
 
@@ -149,7 +129,7 @@
 
   <!-- ============== FOOTER ============== -->
   <footer class="site-footer">
-    © <span id="year"></span> Sethu Madhavan R S. All stories reserved.
+    © <span id="year"></span> Sedhu Mathavan R S. All stories reserved.
   </footer>
 
   <!-- ============== FLOATING CONTACT BUTTON ============== -->

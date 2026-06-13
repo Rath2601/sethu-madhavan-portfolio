@@ -1,5 +1,5 @@
 /* ============================================================
-   MAIN STYLESHEET — Sethu Madhavan R S Portfolio
+   MAIN STYLESHEET — Sedhu Mathavan R S Portfolio
    ------------------------------------------------------------
    Edit any color, font, or size in the :root section below
    and the change will apply across the whole site.
@@ -1178,6 +1178,7 @@ section {
        same kind of warm canvas as the About paper, just lighter. */
 .intro-section {
   position: relative;
+  padding: 7.5rem 0;            /* taller section → slightly longer page */
   /* Lavender from the existing palette (--bg-tint, #e9defb) so the
      section sits inside the theme. It's distinct enough from the body's
      gradient (which is bg-base → bg-soft) to read as its own "tile",
@@ -1192,7 +1193,7 @@ section {
   background-image: url('../images/intro-pattern.svg');
   background-repeat: repeat;
   background-size: 220px 220px;
-  opacity: 0.16;
+  opacity: 0.22;
   pointer-events: none;
   z-index: 0;
 }
@@ -1202,13 +1203,80 @@ section {
   z-index: 1;
 }
 
+/* Two-column container — copy on the left, image on the right. */
+.intro-container {
+  display: grid;
+  grid-template-columns: minmax(280px, 1.1fr) minmax(260px, 1fr);
+  gap: 3rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Image side — landscape stage photo framed like the hero portrait
+   used to be (rounded card, soft shadow, slight tilt that straightens
+   on hover). */
+.intro-image {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+}
+.intro-image img {
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 14px;
+  background: var(--bg-base);
+  box-shadow:
+    0 24px 48px rgba(75, 53, 130, 0.28),
+    0 0 0 1px var(--border-soft);
+  transform: rotate(-0.6deg);
+  transition: transform var(--transition);
+}
+.intro-image img:hover {
+  transform: rotate(0deg) scale(1.02);
+}
+
+/* Copy side — title + paragraph, left-aligned next to the image. */
+.intro-copy { text-align: left; }
+.intro-copy .intro-title {
+  text-align: left;
+  margin-bottom: 1.25rem;
+}
+.intro-copy .intro-title::after {
+  /* Inherit the gold section-title underline rule but pin it to the
+     left edge instead of centred. */
+  margin-left: 0;
+}
+.intro-copy .intro-paragraph {
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+/* Mobile breakpoint — stack the two columns. Image first, then copy. */
+@media (max-width: 880px) {
+  .intro-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 720px;
+  }
+  .intro-image { order: -1; }   /* image first when stacked */
+  .intro-copy { text-align: center; }
+  .intro-copy .intro-title { text-align: center; }
+  .intro-copy .intro-title::after { margin-left: auto; margin-right: auto; }
+  .intro-image img { max-width: 420px; }
+}
+
 /* Smaller pattern tile on phones so the icons stay legible at the same
    on-screen size and don't crowd the narrow column. */
 @media (max-width: 640px) {
   .intro-section::before {
     background-size: 170px 170px;
-    opacity: 0.13;
+    opacity: 0.18;
   }
+  .intro-image img { max-width: 360px; }
 }
 
 /* ---------- 16. Individual work detail page ---------- */
@@ -1593,4 +1661,68 @@ section {
     transform: none !important;
     transition: opacity 0.4s ease;
   }
+}
+
+/* ============================================================
+   19. HERO QUOTE — main page top section
+   ------------------------------------------------------------
+   The stage photo has been moved to the Introduction section
+   below, so the hero collapses to a single centred column with
+   only the quote. The .hero-portrait shell stays in markup but
+   is hidden so the existing parallax JS still finds the node.
+   Placed at the bottom of the file so cascade order wins.
+   ============================================================ */
+
+/* Single-column hero now that the right-side portrait is gone. */
+.hero {
+  grid-template-columns: 1fr;
+}
+
+/* Quote sits centred vertically and horizontally inside the hero. */
+.hero-text {
+  align-self: center;
+  justify-self: center;
+  padding-bottom: 0;
+  text-align: center;
+  max-width: 720px;
+}
+.hero-stage-quote {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-style: normal;
+}
+.hero-stage-quote__line {
+  font-family: var(--font-slab);
+  font-weight: 700;
+  font-size: clamp(1.9rem, 4.6vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
+  color: var(--accent-strong);
+  margin: 0;
+}
+.hero-stage-quote__line--accent {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--accent);
+  margin: 0.2rem 0;
+}
+.hero-stage-quote__cite {
+  display: block;
+  margin-top: 1.25rem;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(0.72rem, 1.2vw, 0.9rem);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Right column placeholder — hidden since the photo moved to
+   the Introduction section. Kept in the DOM so the parallax JS
+   in main.js still finds the same nodes it expects. */
+.hero-portrait {
+  display: none;
 }
