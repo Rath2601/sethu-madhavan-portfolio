@@ -16,9 +16,9 @@
    ============================================================ */
 
 const EMAILJS_CONFIG = {
-  publicKey:  'YOUR_PUBLIC_KEY_HERE',   // ← STEP 4 value
-  serviceId:  'YOUR_SERVICE_ID_HERE',   // ← STEP 2 value
-  templateId: 'YOUR_TEMPLATE_ID_HERE'   // ← STEP 3 value
+  publicKey:  'Bs2VjATiqJh8yWdr0',      // ← STEP 4 value
+  serviceId:  'service_n7bnxwf',        // ← STEP 2 value
+  templateId: 'template_3cqqh6o'        // ← STEP 3 value (auto-reply template_4kgi6y8 is linked inside this template on EmailJS)
 };
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -83,10 +83,29 @@ function setupForm() {
     }
 
     try {
-      await emailjs.sendForm(
+      /* Build the params explicitly instead of sendForm(form).
+         WHY: the EmailJS templates reference BOTH naming styles —
+           • Contact template  → {{from_name}} {{from_email}} {{from_phone}} {{message}} and From-Name {{name}}
+           • Auto-Reply template → To-Email {{email}}
+         The form only has from_* fields, so {{email}} used to resolve
+         to an empty address and the auto-reply silently never sent.
+         Sending both aliases fixes the auto-reply without touching
+         the EmailJS dashboard. */
+      const params = {
+        from_name:  form.from_name.value.trim(),
+        from_email: form.from_email.value.trim(),
+        from_phone: form.from_phone.value.trim(),
+        message:    form.message.value.trim(),
+        // Aliases used by the templates' To/From/Reply-To fields:
+        name:  form.from_name.value.trim(),
+        email: form.from_email.value.trim(),
+        phone: form.from_phone.value.trim()
+      };
+
+      await emailjs.send(
         EMAILJS_CONFIG.serviceId,
         EMAILJS_CONFIG.templateId,
-        form
+        params
       );
       setStatus(status, 'Message sent — thank you. I\'ll be in touch soon.', 'success');
       form.reset();

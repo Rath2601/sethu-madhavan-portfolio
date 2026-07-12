@@ -1769,3 +1769,186 @@ section {
 .hero-portrait {
   display: none;
 }
+
+/* ============================================================
+   20. INTRO — "THE LOGLINE FORMAT" (Netflix Writer's-Challenge
+       inspired typography + polaroid hero image)
+   ------------------------------------------------------------
+   Appended at the end of the file so these rules win the cascade
+   over the earlier .intro-* rules without touching them — existing
+   pages/components are unaffected.
+   ============================================================ */
+
+/* The heading + [LOGLINE] kicker were removed from the intro (felt
+   redundant) — the paragraph now stands alone, vertically centred
+   beside the polaroid. The .intro-kicker / .intro-title rules below
+   are kept for potential reuse; they simply have no target markup. */
+.intro-container .intro-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;   /* vertical centring beside the polaroid */
+  height: 100%;
+}
+.intro-container .intro-copy .intro-paragraph {
+  margin: 0;                 /* no stray bottom margin nudging it off-centre */
+}
+
+/* Typewriter kicker above the heading — mirrors the "THE CHALLENGE"
+   monospace label in the reference. */
+.intro-kicker {
+  font-family: var(--font-typewriter);
+  font-size: clamp(0.85rem, 1.4vw, 1rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  margin: 0 0 1.1rem;
+}
+
+/* Heading — big, bold, tight sans-serif like the reference title. */
+.intro-copy .intro-title {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  font-size: clamp(2rem, 4.2vw, 3.2rem);
+  line-height: 1.06;
+  letter-spacing: -0.015em;
+  margin-bottom: 1rem;
+}
+/* The reference has no underline rule below the title. */
+.intro-copy .intro-title::after { display: none; }
+
+/* Body copy — clean sans, generous size and line-height. */
+.intro-copy .intro-paragraph {
+  font-family: var(--font-sans);
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.65;
+  font-weight: 400;
+  color: var(--text-primary);
+  max-width: 34em;
+}
+
+/* --- Polaroid hero image (photo clipped to a paper sheet) --- */
+/* Override the old full-bleed image column: the photo now floats as a
+   tilted polaroid centred in its column. */
+.intro-image--polaroid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  overflow: visible;
+  padding: 4rem clamp(1.5rem, 4vw, 3.5rem);
+}
+
+.polaroid-wrap {
+  position: relative;
+  width: min(100%, 420px);
+  transform: rotate(2.5deg);
+  transition: transform var(--transition);
+}
+.polaroid-wrap:hover { transform: rotate(1deg) scale(1.015); }
+
+/* Paper sheet peeking out behind the polaroid. */
+.polaroid-paper {
+  position: absolute;
+  top: -1.6rem;
+  left: -2rem;
+  right: -0.9rem;
+  bottom: -2.4rem;
+  background: #efece3;
+  border-radius: 3px;
+  transform: rotate(-3.5deg);
+  box-shadow: 0 14px 34px rgba(29, 26, 46, 0.18);
+}
+
+/* White polaroid frame — thicker strip at the bottom. */
+.polaroid-frame {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  padding: 14px 14px 46px;
+  border-radius: 2px;
+  box-shadow: 0 20px 44px rgba(29, 26, 46, 0.28);
+}
+.polaroid-frame img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  transition: none;               /* neutralise old hover zoom */
+}
+.polaroid-frame img:hover { transform: none; }
+
+/* Paperclip pinned at the top, straddling paper + polaroid. */
+.polaroid-clip {
+  position: absolute;
+  z-index: 2;
+  top: -2.1rem;
+  left: 50%;
+  transform: translateX(-50%) rotate(4deg);
+  width: 30px;
+  height: 74px;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(29, 26, 46, 0.25));
+}
+.polaroid-clip svg { width: 100%; height: 100%; display: block; }
+
+/* Tablets / phones — keep the polaroid comfortably inside the column. */
+@media (max-width: 880px) {
+  .intro-image--polaroid {
+    order: -1;                    /* photo first when stacked (as before) */
+    padding: 3.5rem 2.2rem 3rem;
+  }
+  .polaroid-wrap { width: min(100%, 360px); }
+}
+@media (max-width: 480px) {
+  .intro-image--polaroid { padding: 3rem 1.8rem 2.4rem; }
+  .polaroid-paper { left: -1.2rem; right: -0.6rem; bottom: -1.7rem; top: -1.2rem; }
+  .polaroid-frame { padding: 10px 10px 36px; }
+  .polaroid-clip { top: -1.7rem; width: 24px; height: 60px; }
+}
+
+/* ============================================================
+   21. WORK PAGES — status group sections (In Progress / Completed)
+   ============================================================ */
+/* Full-width heading row inside the .work-grid (grid children). */
+.work-group-title {
+  grid-column: 1 / -1;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-soft);
+  margin: 1rem 0 0.2rem;
+}
+.work-group-title:first-child { margin-top: 0; }
+.work-group-title .count {
+  font-family: var(--font-typewriter);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+}
+
+/* ============================================================
+   22. NAV DROPDOWN — "In Progress" section
+   ============================================================ */
+.dropdown-divider {
+  height: 1px;
+  background: var(--border-soft);
+  margin: 0.5rem 0.9rem;
+  list-style: none;
+}
+.dropdown-menu .dropdown-inprogress {
+  color: var(--accent);
+  font-weight: 600;
+}
+.dropdown-menu .dropdown-inprogress::before {
+  content: '●';
+  font-size: 0.55rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  color: var(--accent);
+}

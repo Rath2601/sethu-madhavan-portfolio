@@ -31,6 +31,8 @@
           <li><a href="pages/work-production-designer.html">Asst. Production Designer</a></li>
           <li><a href="pages/work-actor.html">Actor</a></li>
           <li><a href="pages/work-photographer.html">Photographer</a></li>
+          <li class="dropdown-divider" aria-hidden="true"></li>
+          <li><a href="pages/work-in-progress.html" class="dropdown-inprogress">In Progress</a></li>
         </ul>
       </li>
       <li><a href="#contact">Contact</a></li>
@@ -46,7 +48,6 @@
   <section class="reveal intro-section">
     <div class="container intro-container">
       <div class="intro-copy">
-        <h2 class="section-title intro-title">A Short Introduction</h2>
         <p class="intro-paragraph">
           Based in Chennai, working in Tamil and English. Comfortable in
           the writers' room, behind the camera, and — when truly cornered
@@ -55,10 +56,23 @@
           announce itself.
         </p>
       </div>
-      <figure class="intro-image">
-        <img src="images/sedhu-mathavan.jpg"
-             alt="Sedhu Mathavan R S on stage"
-             loading="lazy">
+      <!-- Netflix "Writer's Challenge" style: photo sits as a white-bordered
+           polaroid, paperclipped to a paper sheet, slightly tilted. -->
+      <figure class="intro-image intro-image--polaroid">
+        <div class="polaroid-wrap">
+          <span class="polaroid-paper" aria-hidden="true"></span>
+          <span class="polaroid-clip" aria-hidden="true">
+            <svg viewBox="0 0 24 60" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 14 Q7 6 12 6 Q17 6 17 14 L17 44 Q17 50 12.5 50 Q8 50 8 44 L8 18 Q8 13.5 12 13.5 Q16 13.5 16 18 L16 40"
+                    fill="none" stroke="#b9bcc4" stroke-width="2.2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div class="polaroid-frame">
+            <img src="images/sedhu-mathavan.jpg"
+                 alt="Sedhu Mathavan R S on stage"
+                 loading="lazy">
+          </div>
+        </div>
       </figure>
     </div>
   </section>
@@ -114,11 +128,11 @@
     <div class="container">
       <h2 class="section-title" data-parallax-speed="0.06">Get In Touch</h2>
       <p class="quote" id="hero-quote" data-parallax-speed="0.05">
-        Every great film is just a script that refused to stay on the page.
+        Where character drives the plot, and the plot drives everything else.
       </p>
       <div class="contact-info">
         <span id="contact-email">hello@sethumathavan.com</span>
-        <span id="contact-phone">+91 98765 43210</span>
+        <span id="contact-phone">+91 63854 42474</span>
         <span id="contact-location">Chennai · India</span>
       </div>
       <p style="margin-top:2rem; font-style:italic;">

@@ -30,9 +30,9 @@ window.PORTFOLIO_DATA = {
     portrait: "images/sedhu-hero.webp",
     portraitFallback: "images/sedhu-hero.webp",
     email: "writterrs07@gmail.com",
-    phone: "+91 98765 43210",
+    phone: "+91 63854 42474",
     location: "Chennai · India",
-    quote: "Stories first. Everything else, second."
+    quote: "Where character drives the plot, and the plot drives everything else."
   },
 
   // --- Accolades shown on home page -----------------------
@@ -172,7 +172,7 @@ window.PORTFOLIO_DATA = {
         title: "I'm On Rag",
         genre: "Short Film · Drama",
         logline: "A 13-year-old girl bunks school with her boyfriend — and gets her first period at the worst possible moment.",
-        summary: "Directed and written by Sethu. A coming-of-age short on secrets, shame, and how children carry their first adult moments alone.",
+        summary: "Directed and written by Sedhu. A coming-of-age short on secrets, shame, and how children carry their first adult moments alone.",
         status: "Completed",
         poster: "images/works/iamonrag.png",
         hero:   "images/works/iamonrag.png"
@@ -182,7 +182,7 @@ window.PORTFOLIO_DATA = {
         title: "Velicham",
         genre: "Short Film",
         logline: "A short film by Sedhu Mathavan R S — directed and production designed.",
-        summary: "Velicham (வெளிச்சம் — \"light\") is a short film directed and production designed by Sethu. A quiet, image-led piece on the spaces between people.",
+        summary: "Velicham (வெளிச்சம் — \"light\") is a short film directed and production designed by Sedhu. A quiet, image-led piece on the spaces between people.",
         status: "Completed",
         poster: "images/works/velicham.jpeg",
         hero:   "images/works/velicham.jpeg"
@@ -303,3 +303,35 @@ window.PORTFOLIO_IMG = {
 /* Expose the resolver so other scripts (e.g. main.js handling the hero
    portrait) can use the same logic. */
 window.PORTFOLIO_RESOLVE = resolveAssetPath;
+
+/* ============================================================
+   STATUS HELPERS — shared by work.js and the In-Progress page.
+   A work counts as "in progress" if its status mentions active
+   development ("In Development", "Ongoing", "In Progress",
+   script-lab stages, etc.). Everything else is treated as
+   Completed / Released / Other.
+   ============================================================ */
+window.PORTFOLIO_STATUS = {
+  isInProgress(work) {
+    return /(in\s*development|in\s*progress|ongoing|stage)/i.test(work?.status || '');
+  },
+  /* All in-progress works across every category, each tagged with its
+     category key so cards can link to the right detail page. */
+  allInProgress() {
+    const all = window.PORTFOLIO_DATA?.works || {};
+    const out = [];
+    // De-dupe by title: the same work can appear under several categories
+    // (e.g. writer + director credits). First occurrence wins.
+    const seen = new Set();
+    Object.keys(all).forEach(cat => {
+      (all[cat] || []).forEach(w => {
+        if (!this.isInProgress(w)) return;
+        const key = (w.title || w.slug).toLowerCase();
+        if (seen.has(key)) return;
+        seen.add(key);
+        out.push({ ...w, _category: cat });
+      });
+    });
+    return out;
+  }
+};

@@ -20,6 +20,20 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!grid) return;
 
   const category = grid.dataset.category;
+  const isInProgress = (w) => window.PORTFOLIO_STATUS?.isInProgress(w) || false;
+
+  /* Special aggregate page: category "in-progress" pulls every
+     in-progress work from ALL categories (see data.js helper). */
+  if (category === 'in-progress') {
+    const works = window.PORTFOLIO_STATUS?.allInProgress() || [];
+    if (!works.length) {
+      grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;">Nothing in progress right now — check back soon.</p>';
+      return;
+    }
+    grid.innerHTML = works.map((w, i) => cardTemplate(w, w._category, i)).join('');
+    return;
+  }
+
   const works = (window.PORTFOLIO_DATA?.works || {})[category] || [];
 
   if (!works.length) {
@@ -27,7 +41,24 @@ document.addEventListener('DOMContentLoaded', () => {
     return;
   }
 
-  grid.innerHTML = works.map((w, i) => cardTemplate(w, category, i)).join('');
+  /* Divide the cards into "In Progress" and "Completed" sections.
+     A section heading is only rendered when that group has cards, so
+     categories with a single status render exactly as before, just
+     with one labelled heading. */
+  const inProgress = works.filter(isInProgress);
+  const completed  = works.filter(w => !isInProgress(w));
+
+  let html = '';
+  let index = 0;
+  const section = (label, list) => {
+    if (!list.length) return '';
+    const heading = `<h2 class="work-group-title">${escapeHTML(label)}<span class="count">(${list.length})</span></h2>`;
+    return heading + list.map(w => cardTemplate(w, category, index++)).join('');
+  };
+
+  html += section('In Progress', inProgress);
+  html += section('Completed & Released', completed);
+  grid.innerHTML = html;
 
   // Make every card clickable (the <a> wrapping handles this; this is a
   // safety net in case a child element swallows the event).
