@@ -43,9 +43,10 @@
     <p>Portraits, found light, and the small moments between scenes — an ongoing collection of stills from sets and from life.</p>
   </header>
 
-  <!-- ============== WORK GRID — populated by js/work.js ============== -->
+  <!-- ============== PHOTO GALLERY — populated by js/photo-gallery.js ==============
+       Click a photo → fullscreen. Click it again → its Instagram post. -->
   <main>
-    <div id="work-grid" class="work-grid" data-category="photographer"></div>
+    <div id="photo-grid" class="photo-grid" aria-label="Photography gallery"></div>
   </main>
 
   <footer class="site-footer">
@@ -74,7 +75,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script src="../js/data.js"></script>
   <script src="../js/main.js"></script>
-  <script src="../js/work.js"></script>
+  <script src="../js/photo-gallery.js"></script>
   <script src="../js/contact.js"></script>
   <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>

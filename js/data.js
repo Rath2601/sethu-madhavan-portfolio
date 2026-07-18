@@ -236,17 +236,33 @@ window.PORTFOLIO_DATA = {
       }
     ],
 
-    photographer: [
-      {
-        slug: "frames",
-        title: "Frames",
-        genre: "Photography",
-        logline: "An ongoing series — quiet portraits, found light, and the small moments between scenes.",
-        summary: "An ongoing collection of stills — production stills, on-set portraits, and personal photography taken between (and sometimes during) film projects.",
-        status: "Ongoing",
-        poster: "images/works/photo-portrait.jpeg",
-        hero:   "images/works/photo-portrait.jpeg"
-      }
+    /* The Photographer page now renders a photo gallery (see the
+       `photography` section below) instead of work cards, so this
+       array is intentionally empty. */
+    photographer: []
+  },
+
+  /* --- Photography gallery (Photographer page) --------------
+     Each photo:
+       src       — image path (drop files into images/photography/)
+       alt       — accessible description
+       instagram — (optional) URL of that photo's Instagram post.
+                   If omitted, the profile URL below is used.
+     Clicking a photo opens it fullscreen; clicking it again in
+     fullscreen opens the Instagram link in a new tab.           */
+  photography: {
+    /* TODO: replace with the real Instagram profile URL */
+    instagram: "https://www.instagram.com/",
+    photos: [
+      { src: "images/photography/market-smile.jpg",      alt: "Woman in a floral saree laughing warmly at a street market",                          instagram: "https://www.instagram.com/p/C8Kt947SWcQ/" },
+      { src: "images/photography/park-bench.jpg",        alt: "Two friends on a park bench watching a garden courtyard",                             instagram: "https://www.instagram.com/p/C7duwLby5oh/" },
+      { src: "images/photography/mural-staircase.jpg",   alt: "Teal building with a giant mural of a woman in a saree over a staircase",             instagram: "https://www.instagram.com/p/Cfno634LIqW/" },
+      { src: "images/photography/beach-blanket.jpg",     alt: "Black-and-white silhouettes shaking out a blanket on a beach at dusk",                instagram: "https://www.instagram.com/p/CX8poqUPY-W/" },
+      { src: "images/photography/train-ladder-boy.jpg",  alt: "Black-and-white photo of a boy framed by berth ladders inside a train",               instagram: "https://www.instagram.com/p/DMuPe5zxtH0/" },
+      { src: "images/photography/auto-ride.jpg",         alt: "Night auto-rickshaw ride seen from the back seat, city lights blurring past",         instagram: "https://www.instagram.com/p/CMJ3V15BIjc/" },
+      { src: "images/photography/beach-night-lights.jpg", alt: "Black-and-white night scene of streetlights flaring over a beach",                   instagram: "https://www.instagram.com/p/CMNDyzqB5tG/" },
+      { src: "images/photography/train-window-boy.jpg",  alt: "Black-and-white photo of a boy gazing out a train window, striped light on the wall", instagram: "https://www.instagram.com/p/CP83DRmBUoZ/" },
+      { src: "images/photography/feast-umbrella.jpg",    alt: "Child eating from a banana leaf under an umbrella at an outdoor feast",               instagram: "https://www.instagram.com/p/CSuO0bjBVYu/" }
     ]
   }
 };
