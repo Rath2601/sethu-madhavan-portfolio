@@ -7,27 +7,37 @@
 
 /* ---------- 1. Theme variables (edit here to recolor site) ---------- */
 :root {
-  /* Color palette: white + lavender, soft and cinematic */
-  --bg-base:        #fdfcff;       /* page background (off white) */
-  --bg-soft:        #f3eefb;       /* lavender mist */
-  --bg-tint:        #e9defb;       /* deeper lavender */
-  --accent:         #6b4ea8;       /* primary lavender-purple */
-  --accent-strong:  #4b3582;       /* hover/active purple */
-  --text-primary:   #1d1a2e;       /* near-black for body text */
-  --text-muted:     #5e5872;       /* secondary text */
-  --border-soft:    #e3dcef;       /* subtle dividers */
-  --shadow-soft:    0 8px 24px rgba(75, 53, 130, 0.08);
-  --shadow-hover:   0 14px 36px rgba(75, 53, 130, 0.18);
+  /* Color palette: "Reel Noir" — deep near-black espresso + antique gold. */
+  --bg-base:        #14100e;       /* page background (deep espresso, top) */
+  --bg-soft:        #1b1614;       /* espresso (page background, bottom) */
+  --bg-tint:        #241d18;       /* raised warm surface */
+  --surface-1:      #211a15;       /* card background */
+  --surface-2:      #2a221b;       /* card background (hover / higher) */
+  --accent:         #c9a24b;       /* antique gold */
+  --accent-strong:  #dcb968;       /* brighter gold (hover/active on dark) */
+  --on-accent:      #201607;       /* dark text on gold fills */
+  /* Intro zone — cinematic dark hero over the "Storyteller" artwork. */
+  --intro-bg:       #14100e;       /* dark base behind the hero image */
+  --intro-text:     #f4eee3;       /* warm cream text over the dark image */
+  --intro-text-soft:#c9c0b0;       /* muted warm grey for secondary copy */
+  --intro-gold:     #dcb968;       /* bright gold that reads on the dark image */
+  --text-primary:   #f3ece0;       /* warm cream for body/headings */
+  --text-muted:     #b6ac9c;       /* warm grey for secondary text */
+  --border-soft:    #3a3129;       /* subtle warm dividers on dark */
+  --shadow-soft:    0 10px 28px rgba(0, 0, 0, 0.38);
+  --shadow-hover:   0 18px 44px rgba(0, 0, 0, 0.52);
 
   /* Typography */
-  --font-serif:      'Cinzel', 'Cormorant Garamond', Georgia, serif;
-  --font-body:       'Cormorant Garamond', Georgia, serif;
+  /* Headings/name use Space Grotesk (bold modern sans); body/UI use Inter.
+     Courier Prime is kept for the typewritten biography device. */
+  --font-serif:      'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body:       'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-typewriter: 'Courier Prime', 'Courier New', monospace;
-  --font-slab:       'Roboto Slab', 'Bitter', Georgia, serif;
+  --font-slab:       'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   /* System sans stack — used for the brand wordmark in the header.
      No external font fetch needed: rendered with native system UI fonts
      so it loads instantly and looks crisp at small sizes. */
-  --font-sans:       -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  --font-sans:       'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI',
                      Roboto, 'Helvetica Neue', Arial, sans-serif;
 
   /* Layout */
@@ -65,14 +75,14 @@ a:hover { color: var(--accent-strong); }
 
 h1, h2, h3, h4 {
   font-family: var(--font-serif);
-  font-weight: 600;
-  letter-spacing: 0.04em;
+  font-weight: 700;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
 }
 
-h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); }
-h2 { font-size: clamp(1.8rem, 4vw, 2.6rem); margin-bottom: 1rem; }
-h3 { font-size: 1.4rem; }
+h1 { font-size: clamp(2.8rem, 7.5vw, 5.5rem); line-height: 1.02; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.8rem); margin-bottom: 1rem; }
+h3 { font-size: 1.45rem; }
 
 p { margin-bottom: 1rem; color: var(--text-muted); }
 
@@ -85,7 +95,7 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 2rem;
-  background: rgba(253, 252, 255, 0.85);
+  background: rgba(20, 16, 14, 0.85);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-soft);
   /* Smoothly slide the nav out of the way when the user scrolls down,
@@ -102,7 +112,7 @@ p { margin-bottom: 1rem; color: var(--text-muted); }
 /* When the page is scrolled at all (any non-zero offset), give the nav a
    slightly stronger shadow so it feels properly elevated over content. */
 .site-nav.is-scrolled {
-  box-shadow: 0 6px 20px rgba(75, 53, 130, 0.08);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
 .nav-brand {
@@ -343,13 +353,13 @@ section {
   z-index: 1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at top right,   rgba(107, 78, 168, 0.06), transparent 60%),
-    radial-gradient(ellipse at bottom left, rgba(184, 163, 223, 0.18), transparent 60%),
+    radial-gradient(ellipse at top right,   rgba(201, 162, 75, 0.05), transparent 60%),
+    radial-gradient(ellipse at bottom left, rgba(0, 0, 0, 0.35), transparent 60%),
     linear-gradient(
       180deg,
-      rgba(253, 252, 255, 0.05) 0%,
-      rgba(253, 252, 255, 0.08) 45%,
-      rgba(243, 238, 251, 0.30) 100%
+      rgba(20, 16, 14, 0.10) 0%,
+      rgba(20, 16, 14, 0.35) 45%,
+      rgba(20, 16, 14, 0.72) 100%
     );
 }
 
@@ -450,7 +460,7 @@ section {
   width: 90%;
   max-width: 440px;
   aspect-ratio: 1 / 1;
-  background: radial-gradient(circle at 30% 30%, rgba(184, 163, 223, 0.55), transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(201, 162, 75, 0.45), transparent 70%);
   border-radius: 50%;
   filter: blur(36px);
   z-index: 0;
@@ -540,7 +550,8 @@ section {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
+  font-weight: 600;
   border: none;
   border-radius: var(--radius);
   cursor: pointer;
@@ -549,7 +560,7 @@ section {
 }
 .btn:hover {
   background: var(--accent-strong);
-  color: #fff;
+  color: var(--on-accent);
   transform: translateY(-2px);
   box-shadow: var(--shadow-hover);
 }
@@ -559,7 +570,7 @@ section {
   border: 1.5px solid var(--accent);
   box-shadow: none;
 }
-.btn-outline:hover { background: var(--accent); color: #fff; }
+.btn-outline:hover { background: var(--accent); color: var(--on-accent); }
 
 /* ---------- 7. Accolades ---------- */
 .accolades {
@@ -744,7 +755,7 @@ section {
   font-size: clamp(1rem, 2vw, 1.25rem);
   letter-spacing: 0.06em;
   color: var(--accent-strong);
-  background: linear-gradient(120deg, rgba(184, 163, 223, 0.45), rgba(107, 78, 168, 0.30));
+  background: rgba(201, 162, 75, 0.16);
   padding: 0.2em 0.8em;
   border-radius: 6px;
 }
@@ -1096,7 +1107,7 @@ a.info-card:focus-visible {
 }
 .work-card .overlay .genre {
   font-style: italic;
-  color: #d8c8f5;
+  color: var(--accent);
   font-size: 0.85rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1105,7 +1116,7 @@ a.info-card:focus-visible {
 .work-card .overlay .gist {
   font-family: var(--font-serif);
   font-style: italic;
-  color: #f3eefb;
+  color: var(--text-primary);
   font-size: 1rem;
   line-height: 1.5;
 }
@@ -1171,7 +1182,8 @@ a.info-card:focus-visible {
   padding: 0.85rem 1.5rem;
   border-radius: 999px;
   background: var(--accent);
-  color: #fff;
+  color: var(--on-accent);
+  font-weight: 600;
   border: none;
   font-family: var(--font-serif);
   font-size: 0.85rem;
@@ -1179,7 +1191,7 @@ a.info-card:focus-visible {
   text-transform: uppercase;
   cursor: pointer;
   z-index: 80;
-  box-shadow: 0 12px 28px rgba(75, 53, 130, 0.32);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
   transition: all var(--transition);
   display: inline-flex;
   align-items: center;
@@ -1193,7 +1205,7 @@ a.info-card:focus-visible {
 .contact-fab:hover {
   background: var(--accent-strong);
   transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(75, 53, 130, 0.42);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
 }
 
 @media (max-width: 480px) {
@@ -1281,7 +1293,7 @@ a.info-card:focus-visible {
 .contact-form textarea:focus {
   outline: none;
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(107, 78, 168, 0.18);
+  box-shadow: 0 0 0 3px rgba(201, 162, 75, 0.22);
 }
 .contact-form textarea { resize: vertical; min-height: 120px; }
 
@@ -1323,25 +1335,23 @@ a.info-card:focus-visible {
 .intro-section {
   position: relative;
   padding: 0;                   /* content runs full-bleed top→bottom */
-  /* Fluid-marble backdrop, colour-tuned to the site's lavender/purple
-     theme. The image is painted on ::before (so it can be filtered without
-     affecting the content), and ::after lays a lavender wash over it for
-     both colour cohesion and text contrast. The background-color is a
-     lavender fallback if the image ever fails to load. */
-  background-color: #e9def4;
-  border-top: 1px solid rgba(75, 53, 130, 0.16);
-  border-bottom: 1px solid rgba(75, 53, 130, 0.16);
-  overflow: hidden;             /* keeps the image crisply inside */
+  /* LIGHT ZONE: the intro is the one very-light section at the top of the
+     page (dark text on warm ivory). The old marble background image was
+     removed per design — a clean solid light ground instead. Everything
+     from Accolades downward is the dark espresso theme. */
+  background-color: var(--intro-bg);
+  border: none;
+  overflow: hidden;
 }
+/* "Storyteller" filmmaking artwork as a full-bleed hero image behind the
+   intro copy + polaroid. ::before paints the image; ::after lays a dark
+   scrim (heavier on the left where the copy sits, lighter mid-right so the
+   clapper/reel show, plus a soft bottom fade into the dark Accolades). */
 .intro-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('../images/intro-bg.jpg') center center / cover no-repeat;
-  /* Pull the vivid pink/teal toward the muted lavender palette: drop the
-     saturation, lift brightness a touch, and rotate the hue bluer so the
-     marble reads as part of the theme rather than fighting it. */
-  filter: saturate(0.5) brightness(1.05) contrast(0.96) hue-rotate(-16deg);
+  background: url('../images/intro-bg/storyteller-desk.jpg') center / cover no-repeat;
   z-index: 0;
   pointer-events: none;
 }
@@ -1349,13 +1359,18 @@ a.info-card:focus-visible {
   content: '';
   position: absolute;
   inset: 0;
-  /* Lavender/purple wash — unifies the marble with the brand accent and
-     keeps text legible over the busier areas of the image. */
-  background:
-    linear-gradient(125deg, rgba(107, 78, 168, 0.24) 0%, rgba(184, 163, 223, 0.10) 55%, rgba(75, 53, 130, 0.22) 100%),
-    linear-gradient(180deg, rgba(243, 238, 251, 0.34) 0%, rgba(233, 222, 251, 0.24) 100%);
   z-index: 0;
   pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(12,9,7,0.90) 0%, rgba(12,9,7,0.62) 42%, rgba(12,9,7,0.30) 72%, rgba(12,9,7,0.50) 100%),
+    linear-gradient(180deg, rgba(12,9,7,0.15) 55%, rgba(12,9,7,0.55) 100%);
+}
+/* On phones the copy is centred over the full width, so swap the
+   left-weighted scrim for a stronger, even one to keep it crisp. */
+@media (max-width: 880px) {
+  .intro-section::after {
+    background: linear-gradient(180deg, rgba(12,9,7,0.74) 0%, rgba(12,9,7,0.82) 100%);
+  }
 }
 /* All children float above the pattern. */
 .intro-section > * {
@@ -1374,7 +1389,13 @@ a.info-card:focus-visible {
   max-width: none;
   margin: 0;
   padding: 0;
-  min-height: 560px;            /* gives the photo column height to fill */
+  /* Fill the first screen exactly (below the real nav height, published as
+     --nav-h by main.js) so the dark Accolades section starts right at the
+     fold — no extra whitespace, no peek. The 560px floor preserves the
+     original photo-column height on short windows. Mobile overrides this to
+     content height (see the 880px breakpoint), where the stacked layout is
+     already taller than the screen. */
+  min-height: max(560px, calc(100svh - var(--nav-h, 96px)));
 }
 
 /* Image side — fills its 40% column completely, edge to edge. */
@@ -1483,8 +1504,8 @@ a.info-card:focus-visible {
 }
 .detail-hero .status-pill {
   display: inline-block;
-  background: rgba(255,255,255,0.94);
-  color: var(--accent-strong);
+  background: var(--accent);
+  color: var(--on-accent);
   font-family: var(--font-serif);
   font-size: 0.7rem;
   letter-spacing: 0.14em;
@@ -1503,7 +1524,7 @@ a.info-card:focus-visible {
 .detail-hero .genre {
   font-family: var(--font-serif);
   font-style: italic;
-  color: #e8dcfb;
+  color: var(--accent);
   font-size: 1rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -1917,28 +1938,28 @@ a.info-card:focus-visible {
 }
 .intro-container .intro-copy .intro-paragraph {
   margin: 0;                 /* no stray bottom margin nudging it off-centre */
-  /* Soft white halo so the near-black copy stays legible over the marble
-     without needing a box around it. */
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.92), 0 0 12px rgba(255, 255, 255, 0.55);
+  /* Light zone: dark text on the ivory ground, no halo needed. */
+  color: var(--intro-text);
+  text-shadow: none;
 }
 /* Name + roles credit line beneath the intro copy. */
 .intro-container .intro-copy .intro-signature {
   margin: 1.6rem 0 0;
   font-family: var(--font-serif);
-  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  font-size: clamp(1.2rem, 2.4vw, 1.55rem);
+  font-weight: 500;
   letter-spacing: 0.03em;
   line-height: 1.5;
-  color: var(--text-primary);
-  /* Same halo as the paragraph so it reads clearly over the marble. */
-  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.92), 0 0 12px rgba(255, 255, 255, 0.55);
+  color: var(--intro-text);
+  text-shadow: none;
 }
 .intro-signature__name {
   font-weight: 700;
-  color: var(--accent-strong);
+  color: var(--intro-text);
 }
 .intro-signature__sep {
   margin: 0 0.3rem;
-  color: var(--accent);
+  color: var(--intro-gold);
   font-weight: 400;
 }
 
@@ -1972,7 +1993,7 @@ a.info-card:focus-visible {
   font-size: clamp(1.05rem, 1.7vw, 1.35rem);
   line-height: 1.65;
   font-weight: 400;
-  color: var(--text-primary);
+  color: var(--intro-text);
   max-width: 34em;
 }
 
@@ -2222,7 +2243,7 @@ a.info-card:focus-visible {
 
 .photo-lightbox .lb-hint {
   margin-top: 1.1rem;
-  color: #cfc4e8;
+  color: var(--text-muted);
   font-family: var(--font-typewriter);
   font-size: 0.85rem;
   text-align: center;

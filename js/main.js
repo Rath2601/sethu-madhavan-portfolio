@@ -10,6 +10,7 @@
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  setupNavHeightVar();
   setupMobileNav();
   setupSmoothScroll();
   setupRevealOnScroll();
@@ -18,6 +19,22 @@ document.addEventListener('DOMContentLoaded', () => {
   setupScrollLayers();
   setupGlobalParallax();
 });
+
+/* ---- 0. Publish the real nav height as a CSS variable (--nav-h) ----
+   Lets CSS size the intro so it fills exactly to the fold regardless of how
+   tall the sticky header renders (which varies with viewport width and the
+   loaded brand font). Purely a measurement helper — no layout side effects. */
+function setupNavHeightVar() {
+  const nav = document.querySelector('.site-nav');
+  if (!nav) return;
+  const setVar = () =>
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
+  setVar();
+  // Re-measure after fonts finish loading (brand height can shift) and on resize.
+  window.addEventListener('load', setVar);
+  window.addEventListener('resize', setVar, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(setVar);
+}
 
 /* ---- 1. Mobile navigation toggle ---- */
 function setupMobileNav() {

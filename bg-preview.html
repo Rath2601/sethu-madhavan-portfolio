@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intro background — preview &amp; picker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Inter:wght@400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css" />
+<style>
+  /* ---- Preview overrides: drive the intro background from CSS variables ---- */
+  :root{
+    --pv-img: url('images/intro-bg/01-warm-smoke.svg');
+    --pv-size: cover;
+    --pv-pos: center;
+    --pv-repeat: no-repeat;
+    --pv-opacity: 1;
+    --pv-scrim: rgba(15,11,9,0.15);
+    --pv-base: #14100e;
+    --nav-h: 86px;
+  }
+  .intro-section{ background-color: var(--pv-base); }
+  .intro-section::before{
+    content:''; display:block; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background: var(--pv-img) var(--pv-pos) / var(--pv-size) var(--pv-repeat);
+    opacity: var(--pv-opacity);
+  }
+  .intro-section::after{
+    content:''; display:block; position:absolute; inset:0; z-index:0; pointer-events:none;
+    background: var(--pv-scrim);
+  }
+  body[data-mode="dark"]  { --intro-text:#f4eee3; --intro-gold:#dcb968; }
+  body[data-mode="light"] { --intro-text:#23201c; --intro-gold:#9a7522; }
+  /* keep the intro visible without the scroll-reveal */
+  .reveal{ opacity:1 !important; transform:none !important; }
+  body{ padding-bottom: 220px; }   /* room for the control dock */
+
+  /* ---- Control dock ---- */
+  .dock{
+    position: fixed; left:0; right:0; bottom:0; z-index:200;
+    background:#0f0b09; border-top:1px solid #3a3129; color:#f3ece0;
+    font-family:'Inter',system-ui,sans-serif; font-size:13px;
+    padding:.8rem 1rem; display:flex; flex-wrap:wrap; gap:1rem 1.4rem; align-items:flex-end;
+  }
+  .dock h4{ font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.14em;
+    text-transform:uppercase; color:#c9a24b; margin:0 0 .5rem; }
+  .grp{ display:flex; flex-direction:column; gap:.35rem; }
+  .row{ display:flex; gap:.5rem; align-items:center; flex-wrap:wrap; }
+  .thumbs{ display:flex; gap:.4rem; flex-wrap:wrap; max-width:420px; }
+  .thumbs button, .seg button, .filebtn{
+    background:#1b1614; color:#e7dcc9; border:1px solid #3a3129; border-radius:8px;
+    cursor:pointer; font-size:12px; font-family:inherit; padding:.4rem .6rem; transition:.15s;
+  }
+  .thumbs button{ width:54px; height:38px; padding:0; background-size:cover; background-position:center;
+    border-radius:6px; position:relative; overflow:hidden; }
+  .thumbs button.active, .seg button.active{ border-color:#c9a24b; box-shadow:0 0 0 2px rgba(201,162,75,.4); }
+  .seg{ display:flex; gap:.3rem; }
+  .filebtn{ display:inline-block; }
+  input[type=range]{ width:130px; accent-color:#c9a24b; }
+  input[type=file]{ display:none; }
+  .val{ min-width:34px; color:#c9a24b; font-variant-numeric:tabular-nums; }
+  .out{ display:flex; flex-direction:column; gap:.35rem; margin-left:auto; }
+  .out .name{ font-size:12px; color:#b6ac9c; max-width:260px; word-break:break-all; }
+  .out textarea{ width:320px; height:70px; background:#161210; color:#cdbfa4; border:1px solid #3a3129;
+    border-radius:8px; font-family:'Courier Prime',monospace; font-size:11px; padding:.4rem; resize:none; }
+  .out .copybtn{ background:#c9a24b; color:#201607; border:none; border-radius:8px; font-weight:600;
+    padding:.45rem .8rem; cursor:pointer; font-family:inherit; }
+  .hint{ font-size:11px; color:#8a7f6f; max-width:230px; line-height:1.4; }
+  label small{ color:#8a7f6f; }
+</style>
+</head>
+<body data-mode="dark">
+
+<!-- Real nav -->
+<nav class="site-nav" aria-label="Primary">
+  <a href="index.html" class="nav-brand">Sedhu Mathavan R S</a>
+  <button class="nav-toggle" aria-label="Toggle menu">☰</button>
+  <ul class="nav-menu">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="work.html">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Real intro (dark text swaps to light via the mode toggle) -->
+<section class="reveal intro-section is-visible">
+  <div class="container intro-container">
+    <div class="intro-copy">
+      <p class="intro-paragraph">
+        I'm Sedhu Mathavan R S, a screenwriter and director based in Chennai,
+        working in both Tamil and English. I hold a Master of Fine Arts (MFA)
+        in Screenplay Writing from the Satyajit Ray Film and Television
+        Institute (SRFTI), Kolkata. I write across social content, short films,
+        web series, and feature films.
+      </p>
+      <p class="intro-signature">
+        Screenplay Writer <span class="intro-signature__sep">|</span> Director
+      </p>
+    </div>
+    <figure class="intro-image intro-image--polaroid">
+      <div class="polaroid-wrap">
+        <span class="polaroid-paper" aria-hidden="true"></span>
+        <div class="polaroid-frame">
+          <img src="images/sedhu-mathavan.jpg" alt="Sedhu Mathavan R S">
+        </div>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<!-- A slice of the dark section, so you can judge the transition -->
+<section class="accolades" style="min-height:200px">
+  <div class="container"><h2 class="section-title">Accolades &amp; Achievements</h2></div>
+</section>
+
+<!-- ================= CONTROL DOCK ================= -->
+<div class="dock">
+  <div class="grp">
+    <h4>Image</h4>
+    <div class="thumbs" id="thumbs"></div>
+    <div class="row">
+      <label class="filebtn">Try from computer…
+        <input type="file" id="file" accept="image/*">
+      </label>
+      <button class="filebtn" id="refresh" title="Re-scan the folder">↻ rescan folder</button>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h4>Theme</h4>
+    <div class="seg" id="modeSeg">
+      <button data-mode="dark" class="active">Dark intro · light text</button>
+      <button data-mode="light">Light intro · dark text</button>
+    </div>
+    <div class="seg" id="fitSeg">
+      <button data-fit="cover" class="active">cover</button>
+      <button data-fit="contain">contain</button>
+      <button data-fit="tile">tile</button>
+    </div>
+  </div>
+
+  <div class="grp">
+    <h4>Adjust</h4>
+    <div class="row"><label>Opacity</label><input type="range" id="op" min="0" max="1" step="0.02" value="1"><span class="val" id="opV">100%</span></div>
+    <div class="row"><label>Scrim <small>(legibility)</small></label><input type="range" id="scrim" min="0" max="0.85" step="0.02" value="0.15"><span class="val" id="scrimV">15%</span></div>
+  </div>
+
+  <div class="out">
+    <div class="name" id="name">01-warm-smoke.svg</div>
+    <textarea id="css" readonly></textarea>
+    <div class="row">
+      <button class="copybtn" id="copy">Copy CSS</button>
+      <span class="hint">Paste into <b>css/styles.css</b> (replace the two <code>.intro-section::before/::after</code> rules), or just tell Claude the filename.</span>
+    </div>
+  </div>
+</div>
+
+<script>
+const root = document.documentElement, body = document.body;
+const FOLDER = 'images/intro-bg/';
+const IMG_RE = /\.(jpe?g|png|webp|gif|avif|svg)$/i;
+let state = { path: FOLDER+'01-warm-smoke.svg', name:'01-warm-smoke.svg', size:'cover', repeat:'no-repeat', opacity:1, scrim:0.15, mode:'dark' };
+
+function scrimColor(){ const a=state.scrim; return state.mode==='dark' ? `rgba(15,11,9,${a})` : `rgba(255,255,255,${a})`; }
+function apply(){
+  root.style.setProperty('--pv-img', `url('${state.path}')`);
+  root.style.setProperty('--pv-size', state.size);
+  root.style.setProperty('--pv-repeat', state.repeat);
+  root.style.setProperty('--pv-opacity', state.opacity);
+  root.style.setProperty('--pv-scrim', scrimColor());
+  root.style.setProperty('--pv-base', state.mode==='dark' ? '#14100e' : '#ffffff');
+  body.dataset.mode = state.mode;
+  document.getElementById('name').textContent = state.name;
+  document.getElementById('css').value = cssSnippet();
+}
+function cssSnippet(){
+  return `/* Intro background */
+:root{ --intro-bg:${state.mode==='dark'?'#14100e':'#ffffff'}; --intro-text:${state.mode==='dark'?'#f4eee3':'#23201c'}; }
+.intro-section::before{ content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:url('${state.path}') ${'center'} / ${state.size} ${state.repeat}; opacity:${state.opacity.toFixed(2)}; }
+.intro-section::after{ content:''; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:${scrimColor()}; display:block; }`;
+}
+function setActive(container, el){ [...container.children].forEach(c=>c.classList.remove('active')); el.classList.add('active'); }
+
+/* Build thumbnails from the folder listing (works on python http.server) */
+async function loadThumbs(){
+  const box = document.getElementById('thumbs'); box.innerHTML='';
+  let names=[];
+  try{
+    const html = await (await fetch(FOLDER)).text();
+    const doc = new DOMParser().parseFromString(html,'text/html');
+    names = [...doc.querySelectorAll('a')].map(a=>a.getAttribute('href'))
+      .map(h=>h.split('/').pop()).filter(n=>IMG_RE.test(n));
+    names = [...new Set(names)];
+  }catch(e){ names = ['01-warm-smoke.svg','02-ink-paint.svg','03-gold-bokeh.svg']; }
+  names.forEach(n=>{
+    const b=document.createElement('button'); b.style.backgroundImage=`url('${FOLDER+n}')`; b.title=n;
+    b.onclick=()=>{ state.path=FOLDER+n; state.name=n; setActive(box,b); apply(); };
+    box.appendChild(b);
+    if(n===state.name) b.classList.add('active');
+  });
+}
+
+/* Local file preview (not saved — copy it into the folder to keep it) */
+document.getElementById('file').addEventListener('change', e=>{
+  const f=e.target.files[0]; if(!f) return;
+  const r=new FileReader();
+  r.onload=()=>{ state.path=r.result; state.name=f.name+'  (local preview — save it into '+FOLDER+' to use)'; apply(); };
+  r.readAsDataURL(f);
+});
+document.getElementById('refresh').onclick=loadThumbs;
+
+document.getElementById('modeSeg').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return;
+  state.mode=b.dataset.mode; setActive(e.currentTarget,b); apply(); });
+document.getElementById('fitSeg').addEventListener('click',e=>{ const b=e.target.closest('button'); if(!b)return;
+  const f=b.dataset.fit; state.size = f==='tile'?'240px':f; state.repeat = f==='tile'?'repeat':'no-repeat';
+  setActive(e.currentTarget,b); apply(); });
+const op=document.getElementById('op'), opV=document.getElementById('opV');
+op.oninput=()=>{ state.opacity=+op.value; opV.textContent=Math.round(op.value*100)+'%'; apply(); };
+const sc=document.getElementById('scrim'), scV=document.getElementById('scrimV');
+sc.oninput=()=>{ state.scrim=+sc.value; scV.textContent=Math.round(sc.value*100)+'%'; apply(); };
+document.getElementById('copy').onclick=()=>{ const t=document.getElementById('css'); t.select();
+  navigator.clipboard.writeText(t.value); document.getElementById('copy').textContent='Copied ✓';
+  setTimeout(()=>document.getElementById('copy').textContent='Copy CSS',1200); };
+
+loadThumbs(); apply();
+</script>
+</body>
+</html>

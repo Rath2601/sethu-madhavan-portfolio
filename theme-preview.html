@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sedhu Mathavan — Theme Directions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: #0b0b0d; color: #fff; }
+  .picker-bar {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; flex-wrap: wrap; gap: .5rem; align-items: center;
+    padding: .9rem 1.4rem; background: #0b0b0d; border-bottom: 1px solid #23232a;
+    font-size: 13px; letter-spacing: .02em;
+  }
+  .picker-bar strong { font-weight: 600; margin-right: .6rem; color: #fff; }
+  .picker-bar a {
+    color: #b8b8c0; text-decoration: none; padding: .35rem .8rem;
+    border: 1px solid #2c2c34; border-radius: 999px; transition: .2s;
+  }
+  .picker-bar a:hover { background: #fff; color: #0b0b0d; }
+
+  .demo { min-height: 92vh; position: relative; overflow: hidden;
+          display: flex; flex-direction: column; }
+  .demo-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem clamp(1.4rem, 5vw, 4rem); position: relative; z-index: 3;
+  }
+  .demo-nav .links { display: flex; gap: clamp(1rem, 2.5vw, 2.4rem); align-items: center; }
+  .demo-nav .links span { font-size: 14px; letter-spacing: .01em; opacity: .82; }
+  .hero {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    padding: 1rem clamp(1.4rem, 5vw, 4rem) 2rem; position: relative; z-index: 3;
+    max-width: 1100px;
+  }
+  .eyebrow { text-transform: uppercase; font-size: 13px; letter-spacing: .28em; }
+  .role { margin-top: .4rem; }
+  .tagline { margin-top: 1.4rem; max-width: 40ch; line-height: 1.6; }
+  .cta-row { margin-top: 2rem; display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { padding: .85rem 1.6rem; border-radius: 999px; font-size: 14px;
+         font-weight: 600; letter-spacing: .02em; cursor: pointer; border: 1.5px solid transparent; }
+  .stats { margin-top: 2.6rem; display: flex; gap: clamp(1.4rem, 4vw, 3.2rem); flex-wrap: wrap; }
+  .stats .n { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; line-height: 1; }
+  .stats .l { font-size: 12px; letter-spacing: .04em; opacity: .7; margin-top: .35rem; }
+  .spec {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
+    display: flex; flex-wrap: wrap; gap: 1.2rem;
+    padding: .7rem clamp(1.4rem, 5vw, 4rem);
+    font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase;
+    background: rgba(0,0,0,.55); backdrop-filter: blur(6px);
+  }
+  .spec b { font-weight: 600; }
+  .swatches { display: inline-flex; gap: 5px; vertical-align: middle; }
+  .swatches i { width: 15px; height: 15px; border-radius: 4px; display: inline-block; border: 1px solid rgba(255,255,255,.25); }
+  .bg-photo { position: absolute; inset: 0; z-index: 1; background-size: cover; background-position: center; }
+  .bg-veil  { position: absolute; inset: 0; z-index: 2; }
+
+  /* ============ D1 — REEL NOIR (gold on espresso, bold sans) ============ */
+  #d1 { background: #161210; color: #f3ece0; }
+  #d1 .bg-photo { background-image: url('images/intro-bg.jpg'); filter: saturate(.7) brightness(.5); opacity: .5; }
+  #d1 .bg-veil { background: linear-gradient(90deg, #161210 22%, rgba(22,18,16,.55) 60%, rgba(22,18,16,.2) 100%); }
+  #d1 .brand { font-family: 'Space Grotesk'; font-weight: 700; font-size: 20px; letter-spacing: -.01em; }
+  #d1 .links span:hover { color: #c9a24b; opacity: 1; }
+  #d1 .eyebrow { color: #c9a24b; }
+  #d1 .name { font-family: 'Space Grotesk'; font-weight: 700; font-size: clamp(2.8rem, 8vw, 6rem);
+              line-height: .95; letter-spacing: -.02em; margin-top: 1rem; }
+  #d1 .role { font-family: 'Space Grotesk'; font-weight: 500; font-size: clamp(1.2rem, 2.6vw, 1.9rem); color: #efe6d6; }
+  #d1 .tagline { color: #b6ac9c; font-size: 17px; }
+  #d1 .btn-1 { background: #c9a24b; color: #201607; }
+  #d1 .btn-2 { border-color: #6a5a3c; color: #e7d9bd; background: transparent; }
+  #d1 .stats .n { color: #c9a24b; }
+
+  /* ============ D2 — FINAL DRAFT (vermilion on slate, condensed caps) ============ */
+  #d2 { background: #2c333a; color: #eef1f3; }
+  #d2 .bg-photo { background-image: url('images/intro-bg.jpg'); filter: grayscale(.5) brightness(.62) contrast(1.05); opacity: .55; }
+  #d2 .bg-veil { background: linear-gradient(180deg, rgba(44,51,58,.35), rgba(44,51,58,.85)); }
+  #d2 .brand { font-family: 'Archivo'; font-weight: 800; font-size: 18px; text-transform: uppercase; letter-spacing: .02em; }
+  #d2 .links span:hover { color: #ef5b28; opacity: 1; }
+  #d2 .eyebrow { color: #ef5b28; }
+  #d2 .name { font-family: 'Anton'; font-weight: 400; text-transform: uppercase;
+              font-size: clamp(3rem, 9.5vw, 7rem); line-height: .9; letter-spacing: .005em;
+              color: #ef5b28; margin-top: .8rem; }
+  #d2 .role { font-family: 'Archivo'; font-weight: 800; text-transform: uppercase;
+              font-size: clamp(1rem, 2.3vw, 1.5rem); letter-spacing: .04em; color: #fff; }
+  #d2 .tagline { color: #c3cbd1; font-size: 17px; }
+  #d2 .btn-1 { background: #ef5b28; color: #1c130d; }
+  #d2 .btn-2 { border-color: #5c666e; color: #dfe4e8; background: transparent; }
+  #d2 .stats .n { color: #ef5b28; font-family: 'Anton'; font-weight: 400; }
+
+  /* ============ D3 — SILVER SCREEN (coral on ink black, elegant mix) ============ */
+  #d3 { background: #0c0c0e; color: #f4f2ee; }
+  #d3 .bg-photo { background-image: url('images/intro-bg.jpg'); filter: saturate(.85) brightness(.55); opacity: .48;
+                  clip-path: polygon(48% 0, 100% 0, 100% 100%, 40% 100%); }
+  #d3 .bg-veil { background: linear-gradient(90deg, #0c0c0e 30%, rgba(12,12,14,.4) 62%, transparent 100%); }
+  #d3 .brand { font-family: 'Cormorant Garamond'; font-weight: 600; font-size: 24px; font-style: italic; }
+  #d3 .links span:hover { color: #f0523f; opacity: 1; }
+  #d3 .eyebrow { color: #f0523f; }
+  #d3 .name { font-family: 'Cormorant Garamond'; font-weight: 400; font-size: clamp(3.2rem, 9vw, 6.6rem);
+              line-height: .95; margin-top: .8rem; }
+  #d3 .name b { color: #f0523f; font-weight: 600; font-style: italic; }
+  #d3 .role { font-family: 'Archivo'; font-weight: 800; text-transform: uppercase;
+              font-size: clamp(.85rem, 1.9vw, 1.15rem); letter-spacing: .22em; color: #d9d5cd; margin-top: .8rem; }
+  #d3 .tagline { color: #a9a49b; font-size: 17px; font-family: 'Cormorant Garamond'; font-size: 22px; }
+  #d3 .btn-1 { background: #f0523f; color: #180b09; }
+  #d3 .btn-2 { border-color: #4a4a50; color: #e6e2da; background: transparent; }
+  #d3 .stats .n { color: #f0523f; font-family: 'Cormorant Garamond'; }
+
+  /* ============ D4 — QUIET FRAME (amber + parchment on deep ink, literary serif) ============ */
+  #d4 { background: #14151a; color: #ece7db; }
+  #d4 .bg-photo { background-image: url('images/intro-bg.jpg'); filter: saturate(.55) brightness(.5) sepia(.15); opacity: .42; }
+  #d4 .bg-veil { background: radial-gradient(120% 120% at 15% 40%, rgba(20,21,26,.55), #14151a 70%); }
+  #d4 .brand { font-family: 'Fraunces'; font-weight: 600; font-size: 21px; letter-spacing: .01em; }
+  #d4 .links span:hover { color: #d9a441; opacity: 1; }
+  #d4 .eyebrow { color: #d9a441; }
+  #d4 .name { font-family: 'Fraunces'; font-weight: 300; font-size: clamp(3rem, 8.5vw, 6.2rem);
+              line-height: .98; letter-spacing: -.01em; margin-top: 1rem; }
+  #d4 .name em { font-style: italic; font-weight: 400; color: #d9a441; }
+  #d4 .role { font-family: 'Inter'; font-weight: 500; text-transform: uppercase; letter-spacing: .16em;
+              font-size: clamp(.8rem, 1.7vw, 1rem); color: #b7b0a0; margin-top: 1rem; }
+  #d4 .tagline { color: #a49c8b; font-size: 18px; font-family: 'Fraunces'; font-weight: 300; font-size: 22px; font-style: italic; }
+  #d4 .btn-1 { background: #d9a441; color: #201803; }
+  #d4 .btn-2 { border-color: #52504a; color: #d8d1c1; background: transparent; }
+  #d4 .stats .n { color: #d9a441; font-family: 'Fraunces'; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="picker-bar">
+  <strong>4 directions →</strong>
+  <a href="#d1">1 · Reel Noir</a>
+  <a href="#d2">2 · Final Draft</a>
+  <a href="#d3">3 · Silver Screen</a>
+  <a href="#d4">4 · Quiet Frame</a>
+</div>
+
+<!-- ===== D1 ===== -->
+<section class="demo" id="d1">
+  <div class="bg-photo"></div><div class="bg-veil"></div>
+  <nav class="demo-nav">
+    <span class="brand">Sedhu Mathavan</span>
+    <div class="links"><span>Work</span><span>About</span><span>Contact</span><span class="btn btn-1" style="padding:.55rem 1.1rem">Let's talk</span></div>
+  </nav>
+  <div class="hero">
+    <p class="eyebrow">Writer · Director</p>
+    <h1 class="name">Sedhu<br>Mathavan</h1>
+    <p class="role">Screenwriter &amp; Director — Chennai</p>
+    <p class="tagline">Cinematic stories with quiet intelligence, told in Tamil and English.</p>
+    <div class="cta-row"><span class="btn btn-1">Explore Work →</span><span class="btn btn-2">Get in touch</span></div>
+    <div class="stats">
+      <div><div class="n">MFA</div><div class="l">Screenwriting · SRFTI</div></div>
+      <div><div class="n">10+</div><div class="l">Films &amp; series</div></div>
+      <div><div class="n">Tamil · English</div><div class="l">Working languages</div></div>
+    </div>
+  </div>
+  <div class="spec">
+    <span><b>Mood</b> · Warm, premium, festival-circuit</span>
+    <span><b>Type</b> · Space Grotesk (bold sans)</span>
+    <span><b>Palette</b> <span class="swatches"><i style="background:#161210"></i><i style="background:#c9a24b"></i><i style="background:#f3ece0"></i></span> espresso · antique gold · cream</span>
+  </div>
+</section>
+
+<!-- ===== D2 ===== -->
+<section class="demo" id="d2">
+  <div class="bg-photo"></div><div class="bg-veil"></div>
+  <nav class="demo-nav">
+    <span class="brand">Sedhu Mathavan</span>
+    <div class="links"><span>Work</span><span>About</span><span>Contact</span><span class="btn btn-1" style="padding:.55rem 1.1rem">Let's talk</span></div>
+  </nav>
+  <div class="hero">
+    <p class="eyebrow">Writer · Director</p>
+    <h1 class="name">Sedhu Mathavan</h1>
+    <p class="role">Screenwriter · Director · Storyteller</p>
+    <p class="tagline">Cinematic stories with quiet intelligence, told in Tamil and English.</p>
+    <div class="cta-row"><span class="btn btn-1">Explore Work →</span><span class="btn btn-2">Get in touch</span></div>
+    <div class="stats">
+      <div><div class="n">MFA</div><div class="l">Screenwriting · SRFTI</div></div>
+      <div><div class="n">10+</div><div class="l">Films &amp; series</div></div>
+      <div><div class="n">2</div><div class="l">Languages</div></div>
+    </div>
+  </div>
+  <div class="spec">
+    <span><b>Mood</b> · Bold, editorial, high-energy</span>
+    <span><b>Type</b> · Anton caps + Archivo</span>
+    <span><b>Palette</b> <span class="swatches"><i style="background:#2c333a"></i><i style="background:#ef5b28"></i><i style="background:#eef1f3"></i></span> slate · vermilion · off-white</span>
+  </div>
+</section>
+
+<!-- ===== D3 ===== -->
+<section class="demo" id="d3">
+  <div class="bg-photo"></div><div class="bg-veil"></div>
+  <nav class="demo-nav">
+    <span class="brand">Sedhu Mathavan</span>
+    <div class="links"><span>Work</span><span>About</span><span>Contact</span><span class="btn btn-1" style="padding:.55rem 1.1rem">Let's talk</span></div>
+  </nav>
+  <div class="hero">
+    <p class="eyebrow">Writer · Director</p>
+    <h1 class="name">Sedhu <b>Mathavan</b></h1>
+    <p class="role">Screenwriter · Director</p>
+    <p class="tagline">Cinematic stories with quiet intelligence, told in Tamil and English.</p>
+    <div class="cta-row"><span class="btn btn-1">Explore Work →</span><span class="btn btn-2">Get in touch</span></div>
+    <div class="stats">
+      <div><div class="n">MFA</div><div class="l">Screenwriting · SRFTI</div></div>
+      <div><div class="n">10+</div><div class="l">Films &amp; series</div></div>
+      <div><div class="n">2</div><div class="l">Languages</div></div>
+    </div>
+  </div>
+  <div class="spec">
+    <span><b>Mood</b> · Dramatic, artful, gallery</span>
+    <span><b>Type</b> · Cormorant serif + Archivo</span>
+    <span><b>Palette</b> <span class="swatches"><i style="background:#0c0c0e"></i><i style="background:#f0523f"></i><i style="background:#f4f2ee"></i></span> ink black · coral · bone</span>
+  </div>
+</section>
+
+<!-- ===== D4 ===== -->
+<section class="demo" id="d4">
+  <div class="bg-photo"></div><div class="bg-veil"></div>
+  <nav class="demo-nav">
+    <span class="brand">Sedhu Mathavan</span>
+    <div class="links"><span>Work</span><span>About</span><span>Contact</span><span class="btn btn-1" style="padding:.55rem 1.1rem">Let's talk</span></div>
+  </nav>
+  <div class="hero">
+    <p class="eyebrow">Writer · Director</p>
+    <h1 class="name">Sedhu <em>Mathavan</em></h1>
+    <p class="role">Screenwriter &amp; Director · Chennai</p>
+    <p class="tagline">Cinematic stories with quiet intelligence, told in Tamil and English.</p>
+    <div class="cta-row"><span class="btn btn-1">Explore Work →</span><span class="btn btn-2">Get in touch</span></div>
+    <div class="stats">
+      <div><div class="n">MFA</div><div class="l">Screenwriting · SRFTI</div></div>
+      <div><div class="n">10+</div><div class="l">Films &amp; series</div></div>
+      <div><div class="n">Tamil · English</div><div class="l">Working languages</div></div>
+    </div>
+  </div>
+  <div class="spec">
+    <span><b>Mood</b> · Literary, understated, refined</span>
+    <span><b>Type</b> · Fraunces (light serif + italic)</span>
+    <span><b>Palette</b> <span class="swatches"><i style="background:#14151a"></i><i style="background:#d9a441"></i><i style="background:#ece7db"></i></span> deep ink · amber · parchment</span>
+  </div>
+</section>
+
+</body>
+</html>
