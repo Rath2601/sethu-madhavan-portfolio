@@ -32,7 +32,23 @@ window.PORTFOLIO_DATA = {
     email: "writterrs07@gmail.com",
     phone: "+91 63854 42474",
     location: "Chennai · India",
-    quote: "Where character drives the plot, and the plot drives everything else."
+    quote: "Let's create stories that live beyond the screen.",
+    /* Short call-to-action shown just beneath the quote in the contact
+       section (see index.html #hero-tagline). */
+    tagline: "Let's talk work",
+
+    /* --- Social + résumé links (Get In Touch section) ----------------
+       Replace these placeholders with the real values:
+         instagram / linkedin — full profile URLs
+         resume — a PDF dropped into the project, e.g. "assets/sedhu-resume.pdf",
+                  or an external link (Google Drive, etc.)
+       Set any of these to "" (empty string) to hide that link.
+       The *Handle / *Name fields are just the text shown on the card. */
+    instagram:       "https://www.instagram.com/",
+    instagramHandle: "@sedhu.mathavan",
+    linkedin:        "https://www.linkedin.com/",
+    linkedinName:    "Sedhu Mathavan",
+    resume:          "assets/sedhu-mathavan-resume.pdf"
   },
 
   // --- Accolades shown on home page -----------------------
@@ -43,6 +59,30 @@ window.PORTFOLIO_DATA = {
   //   festival — "Festival (edition) — Position"
   //   note     — optional extra line
   accolades: [
+    {
+      category: "Fiction",
+      items: [
+        {
+          icon: "🏆",
+          work: "Web Series",
+          meta: "Web Series · Screenwriter",
+          festival: "SWA Script Lab & Pitch Fest 2025 — Selected · Stage 1"
+        },
+        {
+          icon: "🎭",
+          work: "What's in a Name",
+          meta: "Short Film · Actor (Protagonist)",
+          festival: "17th IDSFFK Kerala — Official Selection"
+        },
+        {
+          icon: "🎬",
+          work: "Lipi",
+          meta: "Mise-en-scène · Chief Assistant Director",
+          festival: "35th Kolkata Intl Film Festival — Screened",
+          note: "& many other international film festivals"
+        }
+      ]
+    },
     {
       category: "Non-Fiction",
       items: [
@@ -69,30 +109,6 @@ window.PORTFOLIO_DATA = {
           work: "Jatra Pala",
           meta: "Documentary · Screenwriter",
           festival: "19th Mumbai Intl Film Festival — Competition"
-        }
-      ]
-    },
-    {
-      category: "Fiction",
-      items: [
-        {
-          icon: "🏆",
-          work: "Web Series",
-          meta: "Web Series · Screenwriter",
-          festival: "SWA Script Lab & Pitch Fest 2025 — Selected · Stage 1"
-        },
-        {
-          icon: "🎭",
-          work: "What's in a Name",
-          meta: "Short Film · Actor (Protagonist)",
-          festival: "17th IDSFFK Kerala — Official Selection"
-        },
-        {
-          icon: "🎬",
-          work: "Lipi",
-          meta: "Mise-en-scène · Chief Assistant Director",
-          festival: "35th Kolkata Intl Film Festival — Screened",
-          note: "& many other international film festivals"
         }
       ]
     }

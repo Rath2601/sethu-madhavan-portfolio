@@ -733,6 +733,22 @@ section {
 .contact-preview .quote::before { content: '“'; color: var(--accent); }
 .contact-preview .quote::after  { content: '”'; color: var(--accent); }
 
+/* Small call-to-action line beneath the quote — shown as highlighted text
+   (a soft "marker" background behind the phrase). inline-block keeps the
+   highlight hugging the words; the centred parent keeps it centred. */
+.contact-tagline {
+  display: inline-block;
+  margin: -0.25rem 0 2.5rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  letter-spacing: 0.06em;
+  color: var(--accent-strong);
+  background: linear-gradient(120deg, rgba(184, 163, 223, 0.45), rgba(107, 78, 168, 0.30));
+  padding: 0.2em 0.8em;
+  border-radius: 6px;
+}
+
 .contact-info {
   display: flex;
   justify-content: center;
@@ -742,6 +758,88 @@ section {
   letter-spacing: 0.08em;
 }
 .contact-info span { color: var(--accent-strong); }
+
+/* ---- Get In Touch: personal-detail cards, shown on top of the box ---- */
+.contact-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+  max-width: 920px;
+  margin: 2.5rem auto;
+  text-align: left;
+}
+/* Each detail is a card: circular icon + label + value + sub-line. */
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.15rem 1.35rem;
+  background: var(--bg-base);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  color: inherit;
+  text-decoration: none;
+}
+/* Only the linked cards lift on hover (the location card is static). */
+a.info-card {
+  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+a.info-card:hover,
+a.info-card:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+}
+.info-card__icon {
+  flex: 0 0 auto;
+  width: 3rem;
+  height: 3rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--bg-soft);
+  border: 1px solid var(--border-soft);
+  color: var(--accent);
+}
+.info-card__icon svg { width: 1.35rem; height: 1.35rem; display: block; }
+.info-card__text { display: flex; flex-direction: column; min-width: 0; }
+.info-card__label {
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.15rem;
+}
+.info-card__value {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+.info-card__sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.1rem;
+}
+/* The email address stays lowercase — the Cinzel serif used for the other
+   card values renders as capitals, so the email uses the body serif (which
+   has real lowercase letters) instead. */
+#contact-email {
+  font-family: var(--font-body);
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+/* The inline reach-out box was removed — visitors now use the floating
+   "Get In Touch" button, which opens the contact modal. */
+
+/* One card per row on phones. */
+@media (max-width: 560px) {
+  .contact-cards { grid-template-columns: 1fr; gap: 1rem; }
+}
 
 /* ---------- 10. Footer ---------- */
 .site-footer {
@@ -867,6 +965,9 @@ section {
   margin: 0 0 1.25rem;
 }
 .about-paper .script-cue:last-of-type { margin: 1.5rem 0 0; }
+/* "FADE IN:" sits at the left margin (screenplay convention), before the
+   writing starts; "CUT TO:" stays right-aligned at the end. */
+.about-paper .script-cue--fadein { text-align: left; }
 .about-paper .signature {
   margin-top: 2rem;
   font-style: italic;
@@ -890,13 +991,15 @@ section {
   margin: 1rem auto 0;
 }
 
-/* 3-column responsive grid */
+/* 3-column responsive grid.
+   Top margin gives breathing room below the sticky nav now that the
+   category heading has been removed and cards sit directly under it. */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.8rem;
   max-width: var(--max-width);
-  margin: 2rem auto 4rem;
+  margin: 3.5rem auto 4rem;
   padding: 0 1.5rem;
 }
 
@@ -1219,24 +1322,40 @@ section {
        same kind of warm canvas as the About paper, just lighter. */
 .intro-section {
   position: relative;
-  padding: 0;                   /* image runs full-bleed top→bottom */
-  /* Lavender from the existing palette (--bg-tint, #e9defb) so the
-     section sits inside the theme. It's distinct enough from the body's
-     gradient (which is bg-base → bg-soft) to read as its own "tile",
-     and the line-art pattern overlay still contrasts cleanly against it. */
-  background-color: var(--bg-tint);
-  overflow: hidden;             /* keeps the pattern crisply inside */
+  padding: 0;                   /* content runs full-bleed top→bottom */
+  /* Fluid-marble backdrop, colour-tuned to the site's lavender/purple
+     theme. The image is painted on ::before (so it can be filtered without
+     affecting the content), and ::after lays a lavender wash over it for
+     both colour cohesion and text contrast. The background-color is a
+     lavender fallback if the image ever fails to load. */
+  background-color: #e9def4;
+  border-top: 1px solid rgba(75, 53, 130, 0.16);
+  border-bottom: 1px solid rgba(75, 53, 130, 0.16);
+  overflow: hidden;             /* keeps the image crisply inside */
 }
 .intro-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url('../images/intro-pattern.svg');
-  background-repeat: repeat;
-  background-size: 220px 220px;
-  opacity: 0.22;
-  pointer-events: none;
+  background: url('../images/intro-bg.jpg') center center / cover no-repeat;
+  /* Pull the vivid pink/teal toward the muted lavender palette: drop the
+     saturation, lift brightness a touch, and rotate the hue bluer so the
+     marble reads as part of the theme rather than fighting it. */
+  filter: saturate(0.5) brightness(1.05) contrast(0.96) hue-rotate(-16deg);
   z-index: 0;
+  pointer-events: none;
+}
+.intro-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  /* Lavender/purple wash — unifies the marble with the brand accent and
+     keeps text legible over the busier areas of the image. */
+  background:
+    linear-gradient(125deg, rgba(107, 78, 168, 0.24) 0%, rgba(184, 163, 223, 0.10) 55%, rgba(75, 53, 130, 0.22) 100%),
+    linear-gradient(180deg, rgba(243, 238, 251, 0.34) 0%, rgba(233, 222, 251, 0.24) 100%);
+  z-index: 0;
+  pointer-events: none;
 }
 /* All children float above the pattern. */
 .intro-section > * {
@@ -1313,13 +1432,10 @@ section {
   .intro-copy .intro-title::after { margin-left: auto; margin-right: auto; }
 }
 
-/* Smaller pattern tile on phones so the icons stay legible at the same
-   on-screen size and don't crowd the narrow column. */
+/* Keep the marble covering (never tiling) on phones. Readability in the
+   narrow layout is handled by the frosted copy panel below. */
 @media (max-width: 640px) {
-  .intro-section::before {
-    background-size: 170px 170px;
-    opacity: 0.18;
-  }
+  .intro-section::before { background-size: cover; }
 }
 
 /* ---------- 16. Individual work detail page ---------- */
@@ -1788,9 +1904,42 @@ section {
   flex-direction: column;
   justify-content: center;   /* vertical centring beside the polaroid */
   height: 100%;
+  padding: 4rem clamp(2rem, 5vw, 5rem);
+  /* No panel/box — the copy sits directly on the marble. Readability is
+     kept by a soft light halo on the text itself (below) rather than a
+     visible container. */
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+          backdrop-filter: none;
 }
 .intro-container .intro-copy .intro-paragraph {
   margin: 0;                 /* no stray bottom margin nudging it off-centre */
+  /* Soft white halo so the near-black copy stays legible over the marble
+     without needing a box around it. */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.92), 0 0 12px rgba(255, 255, 255, 0.55);
+}
+/* Name + roles credit line beneath the intro copy. */
+.intro-container .intro-copy .intro-signature {
+  margin: 1.6rem 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  letter-spacing: 0.03em;
+  line-height: 1.5;
+  color: var(--text-primary);
+  /* Same halo as the paragraph so it reads clearly over the marble. */
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.92), 0 0 12px rgba(255, 255, 255, 0.55);
+}
+.intro-signature__name {
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+.intro-signature__sep {
+  margin: 0 0.3rem;
+  color: var(--accent);
+  font-weight: 400;
 }
 
 /* Typewriter kicker above the heading — mirrors the "THE CHALLENGE"
@@ -1963,7 +2112,8 @@ section {
   gap: 1.2rem;
   align-items: flex-start;
   max-width: var(--max-width);
-  margin: 0 auto 4rem;
+  /* Top margin clears the sticky nav now that the page heading is gone. */
+  margin: 3.5rem auto 4rem;
   padding: 0 1.5rem;
 }
 

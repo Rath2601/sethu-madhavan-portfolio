@@ -62,11 +62,19 @@ function setupModal() {
   });
 }
 
-/* ---- 3. Form submit → EmailJS send ---- */
+/* ---- 3. Form submit → EmailJS send ----
+   Wires up EVERY .contact-form on the page (the modal form AND the inline
+   "Leave your details" box on the home page). Each form uses its own
+   .form-status node so messages appear beside the right form. */
 function setupForm() {
-  const form   = document.querySelector('.contact-form');
-  const status = document.querySelector('.form-status');
-  if (!form) return;
+  const forms = document.querySelectorAll('.contact-form');
+  if (!forms.length) return;
+  forms.forEach(bindForm);
+}
+
+function bindForm(form) {
+  // Each form shows feedback in its own status node.
+  const status = form.querySelector('.form-status');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
