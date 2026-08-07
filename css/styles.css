@@ -11,15 +11,12 @@
   --bg-base:        #14100e;       /* page background (deep espresso, top) */
   --bg-soft:        #1b1614;       /* espresso (page background, bottom) */
   --bg-tint:        #241d18;       /* raised warm surface */
-  --surface-1:      #211a15;       /* card background */
-  --surface-2:      #2a221b;       /* card background (hover / higher) */
   --accent:         #c9a24b;       /* antique gold */
   --accent-strong:  #dcb968;       /* brighter gold (hover/active on dark) */
   --on-accent:      #201607;       /* dark text on gold fills */
-  /* Intro zone — cinematic dark hero over the "Storyteller" artwork. */
+  /* Intro zone — cinematic dark hero over the abstract marble backdrop. */
   --intro-bg:       #14100e;       /* dark base behind the hero image */
   --intro-text:     #f4eee3;       /* warm cream text over the dark image */
-  --intro-text-soft:#c9c0b0;       /* muted warm grey for secondary copy */
   --intro-gold:     #dcb968;       /* bright gold that reads on the dark image */
   --text-primary:   #f3ece0;       /* warm cream for body/headings */
   --text-muted:     #b6ac9c;       /* warm grey for secondary text */
@@ -1317,41 +1314,27 @@ a.info-card:focus-visible {
   transform: translateY(0);
 }
 
-/* ---------- 15b. Introduction section line-art pattern ---------- */
-/* "A Short Introduction" gets a tiled line-art background made of small
-   film / writing icons (clapper, camera, pencil, coffee, typewriter, film
-   reel, lightbulb, star). The tile lives at /images/intro-pattern.svg.
-   The pattern is painted by a ::before pseudo-element so it never
-   interferes with the section's content or its reveal-on-scroll animation
-   (which animates the section's own opacity / transform).
-
-   Scaling notes:
-     • background-size is set in px so the icons stay a consistent visual
-       weight regardless of how wide the viewport gets.
-     • opacity is intentionally low (≈0.16) so text remains very readable.
-     • we tint the section with a tiny extra cream so the pattern reads
-       against a slightly different shade than the surrounding page —
-       same kind of warm canvas as the About paper, just lighter. */
+/* ---------- 15b. Introduction section ---------- */
+/* The intro is a cinematic dark hero: an abstract marble backdrop (::before)
+   under a legibility scrim (::after), with the framed polaroid + copy on top.
+   Everything from Accolades downward continues the dark espresso theme. */
 .intro-section {
   position: relative;
   padding: 0;                   /* content runs full-bleed top→bottom */
-  /* LIGHT ZONE: the intro is the one very-light section at the top of the
-     page (dark text on warm ivory). The old marble background image was
-     removed per design — a clean solid light ground instead. Everything
-     from Accolades downward is the dark espresso theme. */
-  background-color: var(--intro-bg);
+  background-color: var(--intro-bg);   /* dark base behind the hero image */
   border: none;
   overflow: hidden;
 }
-/* "Storyteller" filmmaking artwork as a full-bleed hero image behind the
-   intro copy + polaroid. ::before paints the image; ::after lays a dark
-   scrim (heavier on the left where the copy sits, lighter mid-right so the
-   clapper/reel show, plus a soft bottom fade into the dark Accolades). */
+/* Subtle dark marble backdrop as a quiet full-bleed image behind the intro
+   copy + framed polaroid. Kept simple: a cover image, gently darkened so the
+   cream copy reads; ::after adds a light legibility scrim and a soft fade
+   into the dark Accolades below. */
 .intro-section::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url('../images/intro-bg/storyteller-desk.jpg') center / cover no-repeat;
+  background: url('../images/intro-bg/green-marble.jpg') center / cover no-repeat;
+  filter: brightness(0.9);
   z-index: 0;
   pointer-events: none;
 }
@@ -1362,14 +1345,13 @@ a.info-card:focus-visible {
   z-index: 0;
   pointer-events: none;
   background:
-    linear-gradient(90deg, rgba(12,9,7,0.90) 0%, rgba(12,9,7,0.62) 42%, rgba(12,9,7,0.30) 72%, rgba(12,9,7,0.50) 100%),
-    linear-gradient(180deg, rgba(12,9,7,0.15) 55%, rgba(12,9,7,0.55) 100%);
+    linear-gradient(90deg, rgba(15,11,9,0.72) 0%, rgba(15,11,9,0.42) 48%, rgba(15,11,9,0.26) 100%),
+    linear-gradient(180deg, rgba(20,16,14,0) 62%, #1b1614 100%);
 }
-/* On phones the copy is centred over the full width, so swap the
-   left-weighted scrim for a stronger, even one to keep it crisp. */
+/* On phones the copy is centred over the full width, so use an even scrim. */
 @media (max-width: 880px) {
   .intro-section::after {
-    background: linear-gradient(180deg, rgba(12,9,7,0.74) 0%, rgba(12,9,7,0.82) 100%);
+    background: linear-gradient(180deg, rgba(12,9,7,0.55) 0%, rgba(12,9,7,0.72) 100%);
   }
 }
 /* All children float above the pattern. */
@@ -1944,7 +1926,7 @@ a.info-card:focus-visible {
 }
 /* Name + roles credit line beneath the intro copy. */
 .intro-container .intro-copy .intro-signature {
-  margin: 1.6rem 0 0;
+  margin: 0 0 1.4rem;
   font-family: var(--font-serif);
   font-size: clamp(1.2rem, 2.4vw, 1.55rem);
   font-weight: 500;
